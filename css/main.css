@@ -179,12 +179,14 @@ html, body{
     overflow-x: auto; /* 垂直滾動條 */
     max-height: 100vh; /* 最大高度設為視窗高度 */
     max-width: 100vw; /* 最大高度設為視窗高度 */
-    scrollbar-width: thin; /* Firefox 設定滾動條寬度 */
     scrollbar-color: transparent transparent; /* 隱藏滾動條的顏色 */
+    scrollbar-width: none; /* 適用於 Firefox */
+    -ms-overflow-style: none; /* 適用於 IE 和 Edge */
 }
 
 .scrollable::-webkit-scrollbar {
         width: 0; /* 隱藏滾動條寬度 */
-        height: 10; /* 隱藏橫向滾動條 */
+        height: 0; /* 隱藏橫向滾動條 */
+        display: none; /* 適用於 Chrome 和 Safari */
 }
 
