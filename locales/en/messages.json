@@ -1,0 +1,254 @@
+﻿{
+   "btnAbout": {
+      "message": "About"
+   },
+   "btnLiveView": {
+      "message": "Live mode"
+   },
+   "btnGallery": {
+      "message": "Gallery mode"
+   },
+   "btnDrawingBoard": {
+      "message": "Drawing mode"
+   },
+   "btnMinWindow": {
+      "message": "Minimize the application"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "Hide icons / Show icons"
+   },
+   "btnHideFunctionIcon": {
+      "message": "Hide icons"
+   },
+   "btnShowFunctionIcon": {
+      "message": "Show icons"
+   },
+   "btnMaxWindow": {
+      "message": "Full screen the application"
+   },
+   "btnCloseWindow": {
+      "message": "Closes the application"
+   },
+   "btnSetting": {
+      "message": "Setting"
+   },
+   "textVideoResolution": {
+      "message": "Resolution"
+   },
+   "textFont": {
+      "message": "Font"
+   },
+   "btnCapture": {
+      "message": "Capture"
+   },
+   "btnFreezeLiveView": {
+      "message": "Freeze the live view"
+   },
+   "btnIntervalShooting": {
+      "message": "Interval Timer Shooting"
+   },
+   "textInterval": {
+      "message": "Interval"
+   },
+   "textDuration": {
+      "message": "Duration"
+   },
+   "btnFlipVertical": {
+      "message": "Flip vertically"
+   },
+   "btnFlipHorizontal": {
+      "message": "Flip horizontally"
+   },
+   "btnZoom": {
+      "message": "Zoom in and zoom out"
+   },
+   "btnImportImageFile": {
+      "message": "Import image file"
+   },
+   "btnRedo": {
+      "message": "Redo"
+   },
+   "btnUndo": {
+      "message": "Undo"
+   },
+   "textTransparency": {
+      "message": "Transparency"
+   },
+   "textWidth": {
+      "message": "Width"
+   },
+   "btnFreehand": {
+      "message": "Freehand"
+   },
+   "btnArrow": {
+      "message": "Arrow"
+   },
+   "btnEraser": {
+      "message": "Eraser"
+   },
+   "btnLine": {
+      "message": "Line"
+   },
+   "btnRectangle": {
+      "message": "Rectangle"
+   },
+   "btnFilledRectangle": {
+      "message": "Filled rectangle"
+   },
+   "btnEllipse": {
+      "message": "Ellipse"
+   },
+   "btnFilledEllipse": {
+      "message": "Filled ellipse"
+   },
+   "btnEraseAll": {
+      "message": "Erase all"
+   },
+   "btnText": {
+      "message": "Text"
+   },
+   "btnSaveToDisk": {
+      "message": "Downloads"
+   },
+   "btnDelete": {
+      "message": "Delete"
+   },
+   "btnToogleSelectAll": {
+      "message": "Select all / Unselect all"
+   },
+   "btnSelectAll": {
+      "message": "Select all"
+   },
+   "btnUnselectAll": {
+      "message": "Unselect all"
+   },
+   "btnSaveToGallery": {
+      "message": "Save to the gallery"
+   },
+   "btnBackToGallery": {
+      "message": "Return to gallery mode"
+   },
+   "btnStart": {
+      "message": "Start"
+   },
+   "btnStop": {
+      "message": "Stop"
+   },
+   "btnCancel": {
+      "message": "Cancel"
+   },
+   "btnRecord": {
+      "message": "Video recording max time 15 minutes (annotator function disabled while recording)"
+   }, 
+   "btnWhiteBalance": {
+      "message": "Hue"
+   },
+   "btnBrightness": {
+      "message": "Brightness"
+   },
+   "ppbtn_transform": {
+      "message": "Keystone correction"
+   },
+   "ppbtn_ocr": {
+      "message": "Extract text"
+   },
+   "scbtn_transform": {
+      "message": "Keystone correction"
+   },   
+   "scbtn_importPic": {
+      "message": "Import image file"
+   },
+   "scbtn_fullcrop": {
+      "message": "Select All"
+   },
+   "scbtn_redo": {
+      "message": "Redo"
+   },
+   "scbtn_redo2": {
+      "message": "Redo"
+   },
+   "scbtn_undo": {
+      "message": "Undo"
+   },
+   "scbtn_undo2": {
+      "message": "Undo"
+   },
+   "scbtn_preview": {
+      "message": "Back to Scan Mode"
+   },
+   "scbtn_saveDisk": {
+      "message": "Save to the gallery"
+   },
+   "scbtn_ocr": {
+      "message": "Extract text"
+   },
+   "scbtn_mirrow": {
+      "message": "Flip vertically"
+   },
+   "scbtn_flip": {
+      "message": "Flip horizontally"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "Scan Mode"
+   },
+   "btnMultiScanMode": {
+      "message": "Batch Scan Mode"
+   },
+   "mscbtn_capture": {
+      "message": "Capture Image"
+   },
+   "mscbtn_merge": {
+      "message": "Finalize PDF"
+   }, 
+   "mscbtn_fullcrop": {
+      "message": "Select All"
+   },
+   "btnConfig": {
+      "message": "Image controls"
+   },
+   "config_brightness": {
+      "message": "Brightness"
+   },
+   "config_rotate": {
+      "message": "Rotate"
+   }, 
+   "config_wb": {
+      "message": "White Balance"
+   },
+   "config_reset": {
+      "message": "Reset Default"
+   },
+   "btn_Next": {
+      "message": "Next Page"
+   },
+   "btn_Previous": {
+      "message": "Previous Page"
+   },
+   "lbPage": {
+      "message": "PAGE"
+   },
+   "lbSeconds": {
+      "message": "Seconds"
+   },
+   "lbMinutes": {
+      "message": "Minutes"
+   },
+   "lbNormal": {
+      "message": "Normal"
+   },
+   "lbBold": {
+      "message": "Bold"
+   },
+   "lbItalic": {
+      "message": "Italic"
+   },
+   "lbBoldItalic": {
+      "message": "Bold Italic"
+   },
+   "dlgSave": {
+      "message": "Save"
+   }
+}

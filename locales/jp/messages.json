@@ -1,0 +1,254 @@
+{
+   "btnAbout": {
+      "message": "情報"
+   },
+   "btnLiveView": {
+      "message": "ライブモード"
+   },
+   "btnGallery": {
+      "message": "情報"
+   },
+   "btnDrawingBoard": {
+      "message": "描画モード"
+   },
+   "btnMinWindow": {
+      "message": "アプリを最小化"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "アイコンを隠す / 表示する"
+   },
+   "btnHideFunctionIcon": {
+      "message": "アイコンを隠す"
+   },
+   "btnShowFunctionIcon": {
+      "message": "アイコンを表示"
+   },
+   "btnMaxWindow": {
+      "message": "アプリを全画面表示"
+   },
+   "btnCloseWindow": {
+      "message": "アプリを終了"
+   },
+   "btnSetting": {
+      "message": "設定"
+   },
+   "textVideoResolution": {
+      "message": "解像度"
+   },
+   "textFont": {
+      "message": "フォント"
+   },
+   "btnCapture": {
+      "message": "キャプチャ"
+   },
+   "btnFreezeLiveView": {
+      "message": "ライブビューを固定"
+   },
+   "btnIntervalShooting": {
+      "message": "インターバルタイマー撮影"
+   },
+   "textInterval": {
+      "message": "インターバル"
+   },
+   "textDuration": {
+      "message": "期間"
+   },
+   "btnFlipVertical": {
+      "message": "垂直方向に反転"
+   },
+   "btnFlipHorizontal": {
+      "message": "水平方向に反転"
+   },
+   "btnZoom": {
+      "message": "拡大・縮小"
+   },
+   "btnImportImageFile": {
+      "message": "画像ファイルをインポート"
+   },
+   "btnRedo": {
+      "message": "やり直し"
+   },
+   "btnUndo": {
+      "message": "元に戻す"
+   },
+   "textTransparency": {
+      "message": "透明度"
+   },
+   "textWidth": {
+      "message": "幅"
+   },
+   "btnFreehand": {
+      "message": "手描き"
+   },
+   "btnArrow": {
+      "message": "矢印"
+   },
+   "btnEraser": {
+      "message": "消しゴム"
+   },
+   "btnLine": {
+      "message": "線"
+   },
+   "btnRectangle": {
+      "message": "長方形"
+   },
+   "btnFilledRectangle": {
+      "message": "塗りつぶし長方形"
+   },
+   "btnEllipse": {
+      "message": "楕円"
+   },
+   "btnFilledEllipse": {
+      "message": "塗りつぶし楕円"
+   },
+   "btnEraseAll": {
+      "message": "すべて消去"
+   },
+   "btnText": {
+      "message": "テキスト"
+   },
+   "btnSaveToDisk": {
+      "message": "ダウンロード"
+   },
+   "btnDelete": {
+      "message": "削除"
+   },
+   "btnToogleSelectAll": {
+      "message": "全選択 / 全解除"
+   },
+   "btnSelectAll": {
+      "message": "全選択"
+   },
+   "btnUnselectAll": {
+      "message": "全解除"
+   },
+   "btnSaveToGallery": {
+      "message": "ギャラリーに保存"
+   },
+   "btnBackToGallery": {
+      "message": "ギャラリーモードに戻る"
+   },
+   "btnStart": {
+      "message": "開始"
+   },
+   "btnStop": {
+      "message": "停止"
+   },
+   "btnCancel": {
+      "message": "キャンセル"
+   },
+   "btnRecord": {
+      "message": "ビデオ録画の最大時間は15分（録画中は注釈機能無効）"
+   },
+   "btnWhiteBalance": {
+      "message": "色相"
+   },
+   "btnBrightness": {
+      "message": "明るさ"
+   },
+   "ppbtn_transform": {
+      "message": "台形補正"
+   },
+   "ppbtn_ocr": {
+      "message": "テキストを抽出"
+   },
+   "scbtn_transform": {
+      "message": "台形補正"
+   },
+   "scbtn_importPic": {
+      "message": "画像ファイルをインポート"
+   },
+   "scbtn_fullcrop": {
+      "message": "全選択"
+   },
+   "scbtn_redo": {
+      "message": "やり直し"
+   },
+   "scbtn_redo2": {
+      "message": "やり直し"
+   },
+   "scbtn_undo": {
+      "message": "元に戻す"
+   },
+   "scbtn_undo2": {
+      "message": "元に戻す"
+   },
+   "scbtn_preview": {
+      "message": "スキャンモードに戻る"
+   },
+   "scbtn_saveDisk": {
+      "message": "ギャラリーに保存"
+   },
+   "scbtn_ocr": {
+      "message": "テキストを抽出"
+   },
+   "scbtn_mirrow": {
+      "message": "垂直方向に反転"
+   },
+   "scbtn_flip": {
+      "message": "水平方向に反転"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "スキャンモード"
+   },
+   "btnMultiScanMode": {
+      "message": "バッチスキャンモード"
+   },
+   "mscbtn_capture": {
+      "message": "画像をキャプチャ"
+   },
+   "mscbtn_merge": {
+      "message": "PDFを完成"
+   },
+   "mscbtn_fullcrop": {
+      "message": "全選択"
+   },
+   "btnConfig": {
+      "message": "画像コントロール"
+   },
+   "config_brightness": {
+      "message": "明るさ"
+   },
+   "config_rotate": {
+      "message": "回転"
+   },
+   "config_wb": {
+      "message": "ホワイトバランス"
+   },
+   "config_reset": {
+      "message": "デフォルトにリセット"
+   },
+   "btn_Next": {
+      "message": "次のページ"
+   },
+   "btn_Previous": {
+      "message": "前のページ"
+   },
+   "lbPage": {
+      "message": "PAGE"
+   },
+   "lbSeconds": {
+      "message": "秒"
+   },
+   "lbMinutes": {
+      "message": "分"
+   },
+   "lbNormal": {
+      "message": "通常"
+   },
+   "lbBold": {
+      "message": "太字"
+   },
+   "lbItalic": {
+      "message": "斜体"
+   },
+   "lbBoldItalic": {
+      "message": "太字斜体"
+   },
+   "dlgSave": {
+      "message": "保存"
+   }
+}

@@ -1,0 +1,194 @@
+﻿{
+   "btnAbout": {
+      "message": "À propos"
+   },
+   "btnLiveView": {
+      "message": "Mode direct"
+   },
+   "btnGallery": {
+      "message": "Mode galerie"
+   },
+   "btnDrawingBoard": {
+      "message": "Mode à dessin"
+   },
+   "btnMinWindow": {
+      "message": "Réduire la fenêtre de l'application"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "Masquer les icônes / Masquer les icônes"
+   },
+   "btnHideFunctionIcon": {
+      "message": "Masquer les icônes"
+   },
+   "btnShowFunctionIcon": {
+      "message": "Montrer les icônes"
+   },
+   "btnMaxWindow": {
+      "message": "Plein écran"
+   },
+   "btnCloseWindow": {
+      "message": "Fermer l'application"
+   },
+   "btnSetting": {
+      "message": "Paramétrage"
+   },
+   "textVideoResolution": {
+      "message": "Définition"
+   },
+   "textFont": {
+      "message": "Police"
+   },
+   "btnCapture": {
+      "message": "Capturer l'image"
+   },
+   "btnFreezeLiveView": {
+      "message": "Figer la vue en direct"
+   },
+   "btnIntervalShooting": {
+      "message": "Photographie en mode intervallomètre"
+   },
+   "textInterval": {
+      "message": "Intervalle"
+   },
+   "textDuration": {
+      "message": "Durée"
+   },
+   "btnFlipVertical": {
+      "message": "Retourner verticalement"
+   },
+   "btnFlipHorizontal": {
+      "message": "Retourner horizontalement"
+   },
+   "btnZoom": {
+      "message": "Zoom avant et zoom arrière"
+   },
+   "btnImportImageFile": {
+      "message": "Importer un fichier image"
+   },
+   "btnRedo": {
+      "message": "Répéter"
+   },
+   "btnUndo": {
+      "message": "Annuler"
+   },
+   "textTransparency": {
+      "message": "Transparence"
+   },
+   "textWidth": {
+      "message": "Largeur"
+   },
+   "btnFreehand": {
+      "message": "Main levée pour écrire et dessiner"
+   },
+   "btnArrow": {
+      "message": "Dessiner une flèche"
+   },
+   "btnEraser": {
+      "message": "Gomme"
+   },
+   "btnLine": {
+      "message": "Dessiner une ligne"
+   },
+   "btnRectangle": {
+      "message": "Dessiner un rectangle"
+   },
+   "btnFilledRectangle": {
+      "message": "Dessiner un rectangle plein"
+   },
+   "btnEllipse": {
+      "message": "Dessiner une ellipse"
+   },
+   "btnFilledEllipse": {
+      "message": "Dessiner une ellipse pleine"
+   },
+   "btnEraseAll": {
+      "message": "Tout effacer"
+   },
+   "btnText": {
+      "message": "Ajouter un texte"
+   },
+   "btnSaveToDisk": {
+      "message": "Enregistrer sur le disque"
+   },
+   "btnDelete": {
+      "message": "Supprimer"
+   },
+   "btnToogleSelectAll": {
+      "message": "Tout sélectionner / Tout désélectionner"
+   },
+   "btnSelectAll": {
+      "message": "Tout sélectionner"
+   },
+   "btnUnselectAll": {
+      "message": "Tout désélectionner"
+   },
+   "btnSaveToGallery": {
+      "message": "Enregistrer dans la galerie"
+   },
+   "btnBackToGallery": {
+      "message": "Retourner au mode galerie"
+   },
+   "btnStart": {
+      "message": "début"
+   },
+   "btnStop": {
+      "message": "Arrêter"
+   },
+   "btnCancel": {
+      "message": "Annuler"
+   },
+   "btnRecord": {
+      "message": "Durée d’enregistrement vidéo de 15 minutes maximum (fonction annotation désactivée pendant l’enregistrement)"
+   }, 
+   "btnWhiteBalance": {
+      "message": "Teinte"
+   },
+   "btnBrightness": {
+      "message": "Luminosité"
+   },
+   "btnConfig": {
+      "message": "Contrôles d'image"
+   },
+   "config_brightness": {
+      "message": "Luminosité"
+   },
+   "config_rotate": {
+      "message": "Rotation"
+   }, 
+   "config_wb": {
+      "message": "Balance des blancs"
+   },
+   "config_reset": {
+      "message": "Réinitialiser par défaut"
+   },
+   "btn_Next": {
+      "message": "Page suivante"
+   },
+   "btn_Previous": {
+      "message": "Page précédente"
+   },
+   "lbPage": {
+      "message": "Page"
+   },
+   "lbSeconds": {
+      "message": "Secondes"
+   },
+   "lbMinutes": {
+      "message": "Minutes"
+   },
+   "lbNormal": {
+      "message": "Normal"
+   },
+   "lbBold": {
+      "message": "Gras"
+   },
+   "lbItalic": {
+      "message": "Italique"
+   },
+   "lbBoldItalic": {
+      "message": "Gras italique"
+   },
+   "dlgSave": {
+      "message": "Enregistrer sous"
+   }
+}

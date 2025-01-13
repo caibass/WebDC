@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+        
+        <title>Documate</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/perspective-transform.min.js"></script>
+        <script src="js/Ocr.js"></script>
+        <script src="js/tiff.min.js"></script>
+        <script src="js/jspdf.min.js"></script>
+        <script src="js/canvastotiff.min.js"></script>
+    </head>
+
+    <body>    
+        <script src="js/CropBox.js"></script>
+        <script src="js/app.js?v=1.24.1229"></script>
+        <script src="js/fix-webm-duration.js"></script>
+        <script src="js/d3.v3.min.js"></script>
+        <label id = "recordtime"></label>
+        <div id="dialogOcr" title="OCR" style="display:none;">
+            <div id="dlgOcrTxt"></div>        
+        </div>
+        <div id="dialogSave" title="Save" style="display:none;">
+            <div id="dlgSaveTxt"></div>        
+        </div>
+        <div id="captureHit" style="display:none;">
+            <img  src="./css/images/icon/capture.png" with="40" heigh="40"></img>
+        </div>
+        <div id="SaveHit" style="display:none;">
+            <img  src="./css/images/icon/saveDisk.png" with="40" heigh="40" style="background-color: black;"></img>
+        </div> 
+        <!-- <svg style="display:none;">
+            <filter id="filter">
+                <feColorMatrix type="matrix" values="0 1 0 0 0  1 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+            </filter>
+        </svg> -->
+            
+        <canvas id="tempCanvas" style="display:none;"></canvas>
+
+        <canvas id="tempCanvasGL" width="300" height = "300"></canvas>
+
+        <!-- <div class="controls" style="position: absolute; left: calc(50%); top: 100px;">
+            <label>Brightness: <input type="range" id="brightnessSlider" min="0" max="2" step="0.01" value="1"></label></p>
+            <label>White Balance (Color Temp): <input type="range" id="whiteBalanceSlider" min="0.5" max="1.5" step="0.01" value="1"></label>
+        </div> -->
+
+        <!-- <iframe id="ocrFrame" src="ocrad.html"></iframe> -->
+    </body>
+</html>
+

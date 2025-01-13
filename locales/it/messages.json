@@ -1,0 +1,254 @@
+{
+   "btnAbout": {
+      "message": "About"
+   },
+   "btnLiveView": {
+      "message": "Modalità live"
+   },
+   "btnGallery": {
+      "message": "About"
+   },
+   "btnDrawingBoard": {
+      "message": "Modalità disegno"
+   },
+   "btnMinWindow": {
+      "message": "Riduci a icona l'applicazione"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "Nascondi icone / Mostra icone"
+   },
+   "btnHideFunctionIcon": {
+      "message": "Nascondi icone"
+   },
+   "btnShowFunctionIcon": {
+      "message": "Mostra icone"
+   },
+   "btnMaxWindow": {
+      "message": "Schermo intero per l'applicazione"
+   },
+   "btnCloseWindow": {
+      "message": "Chiudi l'applicazione"
+   },
+   "btnSetting": {
+      "message": "Impostazioni"
+   },
+   "textVideoResolution": {
+      "message": "Risoluzione"
+   },
+   "textFont": {
+      "message": "Carattere"
+   },
+   "btnCapture": {
+      "message": "Acquisisci"
+   },
+   "btnFreezeLiveView": {
+      "message": "Blocca la visualizzazione live"
+   },
+   "btnIntervalShooting": {
+      "message": "Scatto a intervalli temporali"
+   },
+   "textInterval": {
+      "message": "Intervallo"
+   },
+   "textDuration": {
+      "message": "Durata"
+   },
+   "btnFlipVertical": {
+      "message": "Capovolgi verticalmente"
+   },
+   "btnFlipHorizontal": {
+      "message": "Capovolgi orizzontalmente"
+   },
+   "btnZoom": {
+      "message": "Zoom avanti e indietro"
+   },
+   "btnImportImageFile": {
+      "message": "Importa file immagine"
+   },
+   "btnRedo": {
+      "message": "Ripeti"
+   },
+   "btnUndo": {
+      "message": "Annulla"
+   },
+   "textTransparency": {
+      "message": "Trasparenza"
+   },
+   "textWidth": {
+      "message": "Larghezza"
+   },
+   "btnFreehand": {
+      "message": "Disegno libero"
+   },
+   "btnArrow": {
+      "message": "Freccia"
+   },
+   "btnEraser": {
+      "message": "Gomma"
+   },
+   "btnLine": {
+      "message": "Linea"
+   },
+   "btnRectangle": {
+      "message": "Rettangolo"
+   },
+   "btnFilledRectangle": {
+      "message": "Rettangolo pieno"
+   },
+   "btnEllipse": {
+      "message": "Ellisse"
+   },
+   "btnFilledEllipse": {
+      "message": "Ellisse piena"
+   },
+   "btnEraseAll": {
+      "message": "Cancella tutto"
+   },
+   "btnText": {
+      "message": "Testo"
+   },
+   "btnSaveToDisk": {
+      "message": "Download"
+   },
+   "btnDelete": {
+      "message": "Elimina"
+   },
+   "btnToogleSelectAll": {
+      "message": "Seleziona tutto / Deseleziona tutto"
+   },
+   "btnSelectAll": {
+      "message": "Seleziona tutto"
+   },
+   "btnUnselectAll": {
+      "message": "Deseleziona tutto"
+   },
+   "btnSaveToGallery": {
+      "message": "Salva nella galleria"
+   },
+   "btnBackToGallery": {
+      "message": "Torna alla modalità galleria"
+   },
+   "btnStart": {
+      "message": "Avvia"
+   },
+   "btnStop": {
+      "message": "Ferma"
+   },
+   "btnCancel": {
+      "message": "Annulla"
+   },
+   "btnRecord": {
+      "message": "Tempo massimo di registrazione video 15 minuti (funzione annotazione disabilitata durante la registrazione)"
+   },
+   "btnWhiteBalance": {
+      "message": "Tonalità"
+   },
+   "btnBrightness": {
+      "message": "Luminosità"
+   },
+   "ppbtn_transform": {
+      "message": "Correzione trapezoidale"
+   },
+   "ppbtn_ocr": {
+      "message": "Estrai testo"
+   },
+   "scbtn_transform": {
+      "message": "Correzione trapezoidale"
+   },
+   "scbtn_importPic": {
+      "message": "Importa file immagine"
+   },
+   "scbtn_fullcrop": {
+      "message": "Seleziona tutto"
+   },
+   "scbtn_redo": {
+      "message": "Ripeti"
+   },
+   "scbtn_redo2": {
+      "message": "Ripeti"
+   },
+   "scbtn_undo": {
+      "message": "Annulla"
+   },
+   "scbtn_undo2": {
+      "message": "Annulla"
+   },
+   "scbtn_preview": {
+      "message": "Torna alla modalità scansione"
+   },
+   "scbtn_saveDisk": {
+      "message": "Salva nella galleria"
+   },
+   "scbtn_ocr": {
+      "message": "Estrai testo"
+   },
+   "scbtn_mirrow": {
+      "message": "Capovolgi verticalmente"
+   },
+   "scbtn_flip": {
+      "message": "Capovolgi orizzontalmente"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "Modalità scansione"
+   },
+   "btnMultiScanMode": {
+      "message": "Modalità scansione batch"
+   },
+   "mscbtn_capture": {
+      "message": "Acquisisci immagine"
+   },
+   "mscbtn_merge": {
+      "message": "Finalizza PDF"
+   },
+   "mscbtn_fullcrop": {
+      "message": "Seleziona tutto"
+   },
+   "btnConfig": {
+      "message": "Controlli immagine"
+   },
+   "config_brightness": {
+      "message": "Luminosità"
+   },
+   "config_rotate": {
+      "message": "Ruota"
+   },
+   "config_wb": {
+      "message": "Bilanciamento del bianco"
+   },
+   "config_reset": {
+      "message": "Ripristina predefiniti"
+   },
+   "btn_Next": {
+      "message": "Pagina successiva"
+   },
+   "btn_Previous": {
+      "message": "Pagina precedente"
+   },
+   "lbPage": {
+      "message": "PAGE"
+   },
+   "lbSeconds": {
+      "message": "Secondi"
+   },
+   "lbMinutes": {
+      "message": "Minuti"
+   },
+   "lbNormal": {
+      "message": "Normale"
+   },
+   "lbBold": {
+      "message": "Grassetto"
+   },
+   "lbItalic": {
+      "message": "Corsivo"
+   },
+   "lbBoldItalic": {
+      "message": "Grassetto corsivo"
+   },
+   "dlgSave": {
+      "message": "Salva"
+   }
+}

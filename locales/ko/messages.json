@@ -1,0 +1,254 @@
+{
+   "btnAbout": {
+      "message": "프로그램 정보"
+   },
+   "btnLiveView": {
+      "message": "실시간 모드"
+   },
+   "btnGallery": {
+      "message": "프로그램 정보"
+   },
+   "btnDrawingBoard": {
+      "message": "드로잉 모드"
+   },
+   "btnMinWindow": {
+      "message": "애플리케이션 최소화"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "아이콘 숨기기 / 아이콘 표시"
+   },
+   "btnHideFunctionIcon": {
+      "message": "아이콘 숨기기"
+   },
+   "btnShowFunctionIcon": {
+      "message": "아이콘 표시"
+   },
+   "btnMaxWindow": {
+      "message": "애플리케이션 전체 화면"
+   },
+   "btnCloseWindow": {
+      "message": "애플리케이션 종료"
+   },
+   "btnSetting": {
+      "message": "설정"
+   },
+   "textVideoResolution": {
+      "message": "해상도"
+   },
+   "textFont": {
+      "message": "글꼴"
+   },
+   "btnCapture": {
+      "message": "캡처"
+   },
+   "btnFreezeLiveView": {
+      "message": "라이브 보기 고정"
+   },
+   "btnIntervalShooting": {
+      "message": "간격 타이머 촬영"
+   },
+   "textInterval": {
+      "message": "간격"
+   },
+   "textDuration": {
+      "message": "지속 시간"
+   },
+   "btnFlipVertical": {
+      "message": "세로로 뒤집기"
+   },
+   "btnFlipHorizontal": {
+      "message": "가로로 뒤집기"
+   },
+   "btnZoom": {
+      "message": "확대 및 축소"
+   },
+   "btnImportImageFile": {
+      "message": "이미지 파일 가져오기"
+   },
+   "btnRedo": {
+      "message": "다시 실행"
+   },
+   "btnUndo": {
+      "message": "실행 취소"
+   },
+   "textTransparency": {
+      "message": "투명도"
+   },
+   "textWidth": {
+      "message": "너비"
+   },
+   "btnFreehand": {
+      "message": "자유 손 그리기"
+   },
+   "btnArrow": {
+      "message": "화살표"
+   },
+   "btnEraser": {
+      "message": "지우개"
+   },
+   "btnLine": {
+      "message": "선"
+   },
+   "btnRectangle": {
+      "message": "사각형"
+   },
+   "btnFilledRectangle": {
+      "message": "채워진 사각형"
+   },
+   "btnEllipse": {
+      "message": "타원"
+   },
+   "btnFilledEllipse": {
+      "message": "채워진 타원"
+   },
+   "btnEraseAll": {
+      "message": "모두 지우기"
+   },
+   "btnText": {
+      "message": "텍스트"
+   },
+   "btnSaveToDisk": {
+      "message": "다운로드"
+   },
+   "btnDelete": {
+      "message": "삭제"
+   },
+   "btnToogleSelectAll": {
+      "message": "모두 선택 / 모두 선택 취소"
+   },
+   "btnSelectAll": {
+      "message": "모두 선택"
+   },
+   "btnUnselectAll": {
+      "message": "모두 선택 취소"
+   },
+   "btnSaveToGallery": {
+      "message": "갤러리에 저장"
+   },
+   "btnBackToGallery": {
+      "message": "갤러리 모드로 돌아가기"
+   },
+   "btnStart": {
+      "message": "시작"
+   },
+   "btnStop": {
+      "message": "정지"
+   },
+   "btnCancel": {
+      "message": "취소"
+   },
+   "btnRecord": {
+      "message": "비디오 녹화 최대 시간 15분 (녹화 중 주석 기능 비활성화)"
+   },
+   "btnWhiteBalance": {
+      "message": "색조"
+   },
+   "btnBrightness": {
+      "message": "밝기"
+   },
+   "ppbtn_transform": {
+      "message": "키스톤 보정"
+   },
+   "ppbtn_ocr": {
+      "message": "텍스트 추출"
+   },
+   "scbtn_transform": {
+      "message": "키스톤 보정"
+   },
+   "scbtn_importPic": {
+      "message": "이미지 파일 가져오기"
+   },
+   "scbtn_fullcrop": {
+      "message": "모두 선택"
+   },
+   "scbtn_redo": {
+      "message": "다시 실행"
+   },
+   "scbtn_redo2": {
+      "message": "다시 실행"
+   },
+   "scbtn_undo": {
+      "message": "실행 취소"
+   },
+   "scbtn_undo2": {
+      "message": "실행 취소"
+   },
+   "scbtn_preview": {
+      "message": "스캔 모드로 돌아가기"
+   },
+   "scbtn_saveDisk": {
+      "message": "갤러리에 저장"
+   },
+   "scbtn_ocr": {
+      "message": "텍스트 추출"
+   },
+   "scbtn_mirrow": {
+      "message": "세로로 뒤집기"
+   },
+   "scbtn_flip": {
+      "message": "가로로 뒤집기"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "스캔 모드"
+   },
+   "btnMultiScanMode": {
+      "message": "배치 스캔 모드"
+   },
+   "mscbtn_capture": {
+      "message": "이미지 캡처"
+   },
+   "mscbtn_merge": {
+      "message": "PDF 완료"
+   },
+   "mscbtn_fullcrop": {
+      "message": "모두 선택"
+   },
+   "btnConfig": {
+      "message": "이미지 컨트롤"
+   },
+   "config_brightness": {
+      "message": "밝기"
+   },
+   "config_rotate": {
+      "message": "회전"
+   },
+   "config_wb": {
+      "message": "화이트 밸런스"
+   },
+   "config_reset": {
+      "message": "기본값으로 재설정"
+   },
+   "btn_Next": {
+      "message": "다음 페이지"
+   },
+   "btn_Previous": {
+      "message": "이전 페이지"
+   },
+   "lbPage": {
+      "message": "PAGE"
+   },
+   "lbSeconds": {
+      "message": "초"
+   },
+   "lbMinutes": {
+      "message": "분"
+   },
+   "lbNormal": {
+      "message": "일반"
+   },
+   "lbBold": {
+      "message": "굵게"
+   },
+   "lbItalic": {
+      "message": "기울임"
+   },
+   "lbBoldItalic": {
+      "message": "굵은 기울임"
+   },
+   "dlgSave": {
+      "message": "저장"
+   }
+}

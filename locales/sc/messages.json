@@ -1,0 +1,254 @@
+{
+   "btnAbout": {
+      "message": "关于"
+   },
+   "btnLiveView": {
+      "message": "预览模式"
+   },
+   "btnGallery": {
+      "message": "关于"
+   },
+   "btnDrawingBoard": {
+      "message": "绘图模式"
+   },
+   "btnMinWindow": {
+      "message": "最小化应用程序"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "隐藏图标 / 显示图标"
+   },
+   "btnHideFunctionIcon": {
+      "message": "隐藏图标"
+   },
+   "btnShowFunctionIcon": {
+      "message": "显示图标"
+   },
+   "btnMaxWindow": {
+      "message": "全屏显示应用程序"
+   },
+   "btnCloseWindow": {
+      "message": "关闭应用程序"
+   },
+   "btnSetting": {
+      "message": "设置"
+   },
+   "textVideoResolution": {
+      "message": "分辨率"
+   },
+   "textFont": {
+      "message": "字体"
+   },
+   "btnCapture": {
+      "message": "捕获"
+   },
+   "btnFreezeLiveView": {
+      "message": "冻结实时画面"
+   },
+   "btnIntervalShooting": {
+      "message": "定时拍摄"
+   },
+   "textInterval": {
+      "message": "间隔"
+   },
+   "textDuration": {
+      "message": "持续时间"
+   },
+   "btnFlipVertical": {
+      "message": "垂直翻转"
+   },
+   "btnFlipHorizontal": {
+      "message": "水平翻转"
+   },
+   "btnZoom": {
+      "message": "放大与缩小"
+   },
+   "btnImportImageFile": {
+      "message": "导入图像文件"
+   },
+   "btnRedo": {
+      "message": "重做"
+   },
+   "btnUndo": {
+      "message": "撤销"
+   },
+   "textTransparency": {
+      "message": "透明度"
+   },
+   "textWidth": {
+      "message": "宽度"
+   },
+   "btnFreehand": {
+      "message": "自由手绘"
+   },
+   "btnArrow": {
+      "message": "箭头"
+   },
+   "btnEraser": {
+      "message": "橡皮擦"
+   },
+   "btnLine": {
+      "message": "线条"
+   },
+   "btnRectangle": {
+      "message": "矩形"
+   },
+   "btnFilledRectangle": {
+      "message": "实心矩形"
+   },
+   "btnEllipse": {
+      "message": "椭圆"
+   },
+   "btnFilledEllipse": {
+      "message": "实心椭圆"
+   },
+   "btnEraseAll": {
+      "message": "清除所有"
+   },
+   "btnText": {
+      "message": "文本"
+   },
+   "btnSaveToDisk": {
+      "message": "下载"
+   },
+   "btnDelete": {
+      "message": "删除"
+   },
+   "btnToogleSelectAll": {
+      "message": "全选 / 全取消"
+   },
+   "btnSelectAll": {
+      "message": "全选"
+   },
+   "btnUnselectAll": {
+      "message": "全取消"
+   },
+   "btnSaveToGallery": {
+      "message": "保存到画廊"
+   },
+   "btnBackToGallery": {
+      "message": "返回画廊模式"
+   },
+   "btnStart": {
+      "message": "开始"
+   },
+   "btnStop": {
+      "message": "停止"
+   },
+   "btnCancel": {
+      "message": "取消"
+   },
+   "btnRecord": {
+      "message": "视频录制最大时间为15分钟（录制时注释功能禁用）"
+   },
+   "btnWhiteBalance": {
+      "message": "色调"
+   },
+   "btnBrightness": {
+      "message": "亮度"
+   },
+   "ppbtn_transform": {
+      "message": "梯形校正"
+   },
+   "ppbtn_ocr": {
+      "message": "提取文字"
+   },
+   "scbtn_transform": {
+      "message": "梯形校正"
+   },
+   "scbtn_importPic": {
+      "message": "导入图像文件"
+   },
+   "scbtn_fullcrop": {
+      "message": "全选"
+   },
+   "scbtn_redo": {
+      "message": "重做"
+   },
+   "scbtn_redo2": {
+      "message": "重做"
+   },
+   "scbtn_undo": {
+      "message": "撤销"
+   },
+   "scbtn_undo2": {
+      "message": "撤销"
+   },
+   "scbtn_preview": {
+      "message": "返回扫描模式"
+   },
+   "scbtn_saveDisk": {
+      "message": "保存到画廊"
+   },
+   "scbtn_ocr": {
+      "message": "提取文字"
+   },
+   "scbtn_mirrow": {
+      "message": "垂直翻转"
+   },
+   "scbtn_flip": {
+      "message": "水平翻转"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "扫描模式"
+   },
+   "btnMultiScanMode": {
+      "message": "批量扫描模式"
+   },
+   "mscbtn_capture": {
+      "message": "捕获图像"
+   },
+   "mscbtn_merge": {
+      "message": "完成 PDF"
+   },
+   "mscbtn_fullcrop": {
+      "message": "全选"
+   },
+   "btnConfig": {
+      "message": "图像控制"
+   },
+   "config_brightness": {
+      "message": "亮度"
+   },
+   "config_rotate": {
+      "message": "旋转"
+   },
+   "config_wb": {
+      "message": "白平衡"
+   },
+   "config_reset": {
+      "message": "重置为默认"
+   },
+   "btn_Next": {
+      "message": "下一页"
+   },
+   "btn_Previous": {
+      "message": "上一页"
+   },
+   "lbPage": {
+      "message": "PAGE"
+   },
+   "lbSeconds": {
+      "message": "秒"
+   },
+   "lbMinutes": {
+      "message": "分钟"
+   },
+   "lbNormal": {
+      "message": "普通"
+   },
+   "lbBold": {
+      "message": "加粗"
+   },
+   "lbItalic": {
+      "message": "斜体"
+   },
+   "lbBoldItalic": {
+      "message": "加粗斜体"
+   },
+   "dlgSave": {
+      "message": "保存"
+   }
+}

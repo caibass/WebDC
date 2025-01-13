@@ -1,0 +1,190 @@
+
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    color: #FFF;
+    font-size: 12px;
+    font-family: 'Droid sans', Helvetica, arial, 'Microsoft Jhenghei', 'PMingLiu', 'Heiti TC', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background-color: #154360;
+    background-size: cover;
+}
+
+.ui-dialog {
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #AAA;
+    background: #154360;
+  }
+  
+  .ui-widget-header,.ui-state-default{ 
+    font-size: 16px;
+    text-align: center;
+    background-color:#154360;
+    border: 1px solid #AAA;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+  }
+  
+  .ui-button {
+    font-size: 14px;
+    text-align: center;
+    /* font-weight: bold; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+  
+    color: #FFF;
+    background: #154360;
+    width: 120px;
+    height: 22px;
+    border: 1px solid #888;
+    border-radius: 4px 4px 4px 4px;
+  }
+  
+  svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+  .line {
+    stroke: blue;
+    stroke-width: 0.7px;
+    stroke-linecap: square;
+  }
+    
+  .handle {
+    fill: blue;
+    pointer-events: all;
+    stroke:blue;
+    stroke-width: 2px;
+  cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+  -moz-appearance: none;
+    overflow: hidden;
+    width: 200;
+    height: 20px;
+    background: none;
+    outline: none;
+  }
+
+
+.slider::-moz-range-track {
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #FAFAFA;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+    /* 在 Firefox 中無需 margin-top 調整 */
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    top: -6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background:#FAFAFA;
+    transition: .2s;
+  }
+  
+  .slider::-webkit-slider-runnable-track {
+    background-color: #FFF;
+    height: 4px;
+    border-radius: 5px;
+  }
+  
+  .slider:active::-webkit-slider-thumb{
+    top:-8px;
+    width:20px;
+    height:20px;
+  }
+
+  .MultiScanCnt {
+    color: #154360;
+		font-size: 400%;
+    font-weight: bold;
+		-webkit-text-stroke: 1px white;
+  }
+
+  .slider_min {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    overflow: hidden;
+    width: 200;
+    height: 20px;
+    background: none;
+    outline: none;
+  }
+
+  .slider_min::-moz-range-track {
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+  }
+
+  .slider_min::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #FAFAFA;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+    /* 在 Firefox 中無需 margin-top 調整 */
+  }
+  
+  .slider_min::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background:#FAFAFA;
+    transition: .2s;
+  }
+  
+  .slider_min::-webkit-slider-runnable-track {
+    background-color: #FFF;
+    height: 3px;
+    border-radius: 3px;
+  }
+  
+  .slider_min:active::-webkit-slider-thumb{
+    top:-4px;
+    width:10px;
+    height:10px;
+  }
+
+.scrollable {
+    overflow-y: auto; /* 垂直滾動條 */
+    overflow-x: auto; /* 垂直滾動條 */
+    max-height: 100vh; /* 最大高度設為視窗高度 */
+    max-width: 100vw; /* 最大高度設為視窗高度 */
+    scrollbar-width: thin; /* Firefox 設定滾動條寬度 */
+    scrollbar-color: transparent transparent; /* 隱藏滾動條的顏色 */
+}
+
+.scrollable::-webkit-scrollbar {
+        width: 0; /* 隱藏滾動條寬度 */
+        height: 10; /* 隱藏橫向滾動條 */
+}
+

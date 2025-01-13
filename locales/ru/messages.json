@@ -1,0 +1,254 @@
+﻿{
+   "btnAbout": {
+      "message": "О программе"
+   },
+   "btnLiveView": {
+      "message": "Камера"
+   },
+   "btnGallery": {
+      "message": "Галерея"
+   },
+   "btnDrawingBoard": {
+      "message": "Графика"
+   },
+   "btnMinWindow": {
+      "message": "Свернуть"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "Скрыть иконки / Показать иконки"
+   },
+   "btnHideFunctionIcon": {
+      "message": "Скрыть панель инструментов"
+   },
+   "btnShowFunctionIcon": {
+      "message": "Показать панель инструментов"
+   },
+   "btnMaxWindow": {
+      "message": "Развернуть"
+   },
+   "btnCloseWindow": {
+      "message": "Закрыть"
+   },
+   "btnSetting": {
+      "message": "Настройки"
+   },
+   "textVideoResolution": {
+      "message": "Разрешение"
+   },
+   "textFont": {
+      "message": "Шрифт"
+   },
+   "btnCapture": {
+      "message": "Снимок"
+   },
+   "btnFreezeLiveView": {
+      "message": "Заморозка изображения"
+   },
+   "btnIntervalShooting": {
+      "message": "Запись серии"
+   },
+   "textInterval": {
+      "message": "Интервал"
+   },
+   "textDuration": {
+      "message": "Длительность"
+   },
+   "btnFlipVertical": {
+      "message": "Отразить по вертикали"
+   },
+   "btnFlipHorizontal": {
+      "message": "Отразить по горизонтали"
+   },
+   "btnZoom": {
+      "message": "Увеличение / Уменьшение"
+   },
+   "btnImportImageFile": {
+      "message": "Импорт изображения"
+   },
+   "btnRedo": {
+      "message": "Повторить"
+   },
+   "btnUndo": {
+      "message": "Отменить"
+   },
+   "textTransparency": {
+      "message": "Прозрачность"
+   },
+   "textWidth": {
+      "message": "Толщина"
+   },
+   "btnFreehand": {
+      "message": "Карандаш"
+   },
+   "btnArrow": {
+      "message": "Стрелка"
+   },
+   "btnEraser": {
+      "message": "Ластик"
+   },
+   "btnLine": {
+      "message": "Линия"
+   },
+   "btnRectangle": {
+      "message": "Прямоугольник"
+   },
+   "btnFilledRectangle": {
+      "message": "Прямоугольник с заливкой"
+   },
+   "btnEllipse": {
+      "message": "Эллипс"
+   },
+   "btnFilledEllipse": {
+      "message": "Эллипс с заливкой"
+   },
+   "btnEraseAll": {
+      "message": "Стереть все"
+   },
+   "btnText": {
+      "message": "Текст"
+   },
+   "btnSaveToDisk": {
+      "message": "Сохранить"
+   },
+   "btnDelete": {
+      "message": "Удалить"
+   },
+   "btnToogleSelectAll": {
+      "message": "Выбрать все / убрать выделение со всего"
+   },
+   "btnSelectAll": {
+      "message": "Выбрать все"
+   },
+   "btnUnselectAll": {
+      "message": "убрать выделение со всего"
+   },
+   "btnSaveToGallery": {
+      "message": "Сохранить в Галерее"
+   },
+   "btnBackToGallery": {
+      "message": "Перейти в Галерею"
+   },
+   "btnStart": {
+      "message": "Старт"
+   },
+   "btnStop": {
+      "message": "Стоп"
+   },
+   "btnCancel": {
+      "message": "Отмена"
+   },
+   "btnRecord": {
+      "message": "Максимальное время записи видео 15 минут (добавление графики во время записи отключено)"
+   }, 
+   "btnWhiteBalance": {
+      "message": "Оттенок"
+   },
+   "btnBrightness": {
+      "message": "Яркость"
+   },
+   "ppbtn_transform": {
+      "message": "Коррекция трапецеидальных искажений"
+   },
+   "ppbtn_ocr": {
+      "message": "Извлечь текст"
+   },
+   "scbtn_transform": {
+      "message": "Коррекция трапецеидальных искажений"
+   },   
+   "scbtn_importPic": {
+      "message": "Импорт изображения"
+   },
+   "scbtn_fullcrop": {
+      "message": "Выбрать все"
+   },
+   "scbtn_redo": {
+      "message": "Повторить"
+   },
+   "scbtn_redo2": {
+      "message": "Повторить"
+   },
+   "scbtn_undo": {
+      "message": "Отменить"
+   },
+   "scbtn_undo2": {
+      "message": "Отменить"
+   },
+   "scbtn_preview": {
+      "message": "Назад в режим сканирования"
+   },
+   "scbtn_saveDisk": {
+      "message": "Сохранить в Галерее"
+   },
+   "scbtn_ocr": {
+      "message": "Извлечь текст"
+   },
+   "scbtn_mirrow": {
+      "message": "Отразить по вертикали"
+   },
+   "scbtn_flip": {
+      "message": "Отразить по горизонтали"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "Сканирование"
+   },
+   "btnMultiScanMode": {
+      "message": "Многостраничное сканирование"
+   },
+   "btnConfig": {
+      "message": "Настройки изображения"
+   },
+   "mscbtn_capture": {
+      "message": "Снимок изображения"
+   },
+   "mscbtn_merge": {
+      "message": "Завершить PDF-файл"
+   }, 
+   "mscbtn_fullcrop": {
+      "message": "Выбрать все"
+   },
+   "config_brightness": {
+      "message": "Яркость"
+   },
+   "config_rotate": {
+      "message": "Поворот"
+   }, 
+   "config_wb": {
+      "message": "Баланс белого"
+   },
+   "config_reset": {
+      "message": "Настройки по умолчанию"
+   },
+   "btn_Next": {
+      "message": "Следующая страница"
+   },
+   "btn_Previous": {
+      "message": "Предыдущая страница"
+   },
+   "lbPage": {
+      "message": "Страница"
+   },
+   "lbSeconds": {
+      "message": "Секунды"
+   },
+   "lbMinutes": {
+      "message": "Минуты"
+   },
+   "lbNormal": {
+      "message": "Обычный"
+   },
+   "lbBold": {
+      "message": "Жирный"
+   },
+   "lbItalic": {
+      "message": "Курсив"
+   },
+   "lbBoldItalic": {
+      "message": "Жирный Курсив"
+   },
+   "dlgSave": {
+      "message": "Сохранить как"
+   }
+}

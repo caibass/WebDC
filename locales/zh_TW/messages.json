@@ -1,0 +1,254 @@
+﻿{
+   "btnAbout": {
+      "message": "關於"
+   },
+   "btnLiveView": {
+      "message": "即時影像"
+   },
+   "btnGallery": {
+      "message": "圖庫"
+   },
+   "btnDrawingBoard": {
+      "message": "塗鴉牆"
+   },
+   "btnMinWindow": {
+      "message": "最小化"
+   },
+   "btnToogleFunctionIcon": {
+      "message": "隱藏功能圖示/顯示功能圖示"
+   },
+   "btnHideFunctionIcon": {
+      "message": "隱藏功能圖示"
+   },
+   "btnShowFunctionIcon": {
+      "message": "顯示功能圖示"
+   },
+   "btnMaxWindow": {
+      "message": "全螢幕"
+   },
+   "btnCloseWindow": {
+      "message": "關閉"
+   },
+   "btnSetting": {
+      "message": "設定"
+   },
+   "textVideoResolution": {
+      "message": "解析度"
+   },
+   "textFont": {
+      "message": "字型"
+   },
+   "btnCapture": {
+      "message": "拍照"
+   },
+   "btnFreezeLiveView": {
+      "message": "凍結畫面"
+   },
+   "btnIntervalShooting": {
+      "message": "定時連拍"
+   },
+   "textInterval": {
+      "message": "間隔時間"
+   },
+   "textDuration": {
+      "message": "持續時間"
+   },
+   "btnFlipVertical": {
+      "message": "垂直翻轉"
+   },
+   "btnFlipHorizontal": {
+      "message": "水平翻轉"
+   },
+   "btnZoom": {
+      "message": "縮放"
+   },
+   "btnImportImageFile": {
+      "message": "匯入檔案"
+   },
+   "btnRedo": {
+      "message": "重做"
+   },
+   "btnUndo": {
+      "message": "復原"
+   },
+   "textTransparency": {
+      "message": "透明度"
+   },
+   "textWidth": {
+      "message": "寬度"
+   },
+   "btnFreehand": {
+      "message": "徒手畫"
+   },
+   "btnArrow": {
+      "message": "箭頭"
+   },
+   "btnEraser": {
+      "message": "橡皮擦"
+   },
+   "btnLine": {
+      "message": "線條"
+   },
+   "btnRectangle": {
+      "message": "空心矩形"
+   },
+   "btnFilledRectangle": {
+      "message": "實心矩形"
+   },
+   "btnEllipse": {
+      "message": "空心橢圓形"
+   },
+   "btnFilledEllipse": {
+      "message": "實心橢圓形"
+   },
+   "btnEraseAll": {
+      "message": "全部清除"
+   },
+   "btnText": {
+      "message": "文字"
+   },
+   "btnSaveToDisk": {
+      "message": "存檔至硬碟"
+   },
+   "btnDelete": {
+      "message": "刪除"
+   },
+   "btnToogleSelectAll": {
+      "message": "全選 / 全不選"
+   },
+   "btnSelectAll": {
+      "message": "全選"
+   },
+   "btnUnselectAll": {
+      "message": "全不選"
+   },
+   "btnSaveToGallery": {
+      "message": "存檔至圖庫"
+   },
+   "btnBackToGallery": {
+      "message": "回圖庫縮圖模式"
+   },
+   "btnStart": {
+      "message": "開始"
+   },
+   "btnStop": {
+      "message": "停止"
+   },
+   "btnCancel": {
+      "message": "取消"
+   },
+   "btnRecord": {
+      "message": "錄影最長時間15分鐘 (錄影時無法使用註釋功能)"
+   }, 
+   "btnWhiteBalance": {
+      "message": "白平衡"
+   },
+   "btnBrightness": {
+      "message": "亮度"
+   },
+   "ppbtn_transform": {
+      "message": "梯形校正"
+   },
+   "ppbtn_ocr": {
+      "message": "文字辨識"
+   },
+   "scbtn_transform": {
+      "message": "梯形校正"
+   },   
+   "scbtn_importPic": {
+      "message": "匯入檔案"
+   },
+   "scbtn_fullcrop": {
+      "message": "全選"
+   },
+   "scbtn_redo": {
+      "message": "重做"
+   },
+   "scbtn_redo2": {
+      "message": "重做"
+   },
+   "scbtn_undo": {
+      "message": "復原"
+   },
+   "scbtn_undo2": {
+      "message": "復原"
+   },
+   "scbtn_preview": {
+      "message": "回掃描模式"
+   },
+   "scbtn_saveDisk": {
+      "message": "存檔至圖庫"
+   },
+   "scbtn_ocr": {
+      "message": "文字辨識"
+   },
+   "scbtn_mirrow": {
+      "message": "垂直翻轉"
+   },
+   "scbtn_flip": {
+      "message": "水平翻轉"
+   },
+   "scbtn_config": {
+      "message": ""
+   },
+   "btnScanMode": {
+      "message": "掃描模式"
+   },
+   "btnMultiScanMode": {
+      "message": "連續掃描模式"
+   },
+   "btnConfig": {
+      "message": "影像調整"
+   },
+   "mscbtn_capture": {
+      "message": "拍照"
+   },
+   "mscbtn_merge": {
+      "message": "掃描為PDF"
+   }, 
+   "mscbtn_fullcrop": {
+      "message": "全選"
+   },
+   "config_brightness": {
+      "message": "亮度"
+   },
+   "config_rotate": {
+      "message": "旋轉"
+   }, 
+   "config_wb": {
+      "message": "白平衡"
+   },
+   "config_reset": {
+      "message": "回復預設值"
+   },
+   "btn_Next": {
+      "message": "下一頁"
+   },
+   "btn_Previous": {
+      "message": "上一頁"
+   },
+   "lbPage": {
+      "message": "頁面"
+   },
+   "lbSeconds": {
+      "message": "秒"
+   },
+   "lbMinutes": {
+      "message": "分"
+   },
+   "lbNormal": {
+      "message": "正常"
+   },
+   "lbBold": {
+      "message": "粗體"
+   },
+   "lbItalic": {
+      "message": "斜體"
+   },
+   "lbBoldItalic": {
+      "message": "粗斜體"
+   },
+   "dlgSave": {
+      "message": "存檔"
+   }
+}
