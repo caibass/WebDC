@@ -3001,7 +3001,7 @@ var VideoResolutionList =
 		// width  height   def 
 		[1920, 1080, 0],
 		[1280, 720, 1],
-		[1024, 768, 0],
+		[1280, 1024, 0],
 	];
 
 var DevList =
