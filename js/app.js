@@ -13217,7 +13217,7 @@ async function checkMediaPermissions() {
         } else {
             //console.log('尚未取得完整權限');
             let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            stream.getTracks().forEach(track => track.stop());
+            //stream.getTracks().forEach(track => track.stop());
             return true;
         }
     } catch (error) {
@@ -13406,7 +13406,7 @@ async function getConstraints() {
         const settings = videoTrack.getSettings();
         console.log('攝像頭的實際設定:', settings);
         //const capabilities = videoTrack.getCapabilities();
-        stream.getTracks().forEach(track => track.stop());
+        //stream.getTracks().forEach(track => track.stop());
         //console.log(capabilities);
 
         let reqWidth;
@@ -13521,7 +13521,7 @@ async function startVideo() {
 
     try {
         // await navigator.mediaDevices.getUserMedia({ deviceId: { exact: choseVideoSource }, video: true, audio: true });
-        // await testDeviceAvailability(constraints.video.deviceId.exact);
+        await testDeviceAvailability(constraints.video.deviceId.exact);
 
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         window.stream = stream;
@@ -13595,7 +13595,7 @@ async function startVideo() {
 }
 
 async function stopVideo() {
-    console.log("stopVideo");
+    //console.log("stopVideo");
     if (window.stream) {
         window.stream.getTracks().forEach(track => track.stop());
         console.log("stopVideo", window.stream);
