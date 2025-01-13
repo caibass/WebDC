@@ -13388,8 +13388,10 @@ async function getConstraints() {
             audio: { deviceId: { exact: audioSelect.value } },
             video: {
                 deviceId: { exact: videoOption.value },
-                width: { exact: appFC.reqImgW },
-                height: { exact: appFC.reqImgH }
+                width: { exact: 1920 },
+                height: { exact: 1080 }
+                // width: { exact: appFC.reqImgW },
+                // height: { exact: appFC.reqImgH }
             }
         };
 
