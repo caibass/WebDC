@@ -13161,9 +13161,13 @@ async function makeDeviceList() {
         videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
         audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
 
+        console.log("make Device List Step 1");
+
         const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
             device => device.deviceId.length > 20
         );
+
+        console.log("make Device List Step 2");
 
         devices
             .filter(device =>
@@ -13182,6 +13186,8 @@ async function makeDeviceList() {
                 //}
             });
 
+        console.log("make Device List Step 3");
+
         devices
             .filter(device =>
                 device.kind === "audioinput" &&
@@ -13195,6 +13201,8 @@ async function makeDeviceList() {
                 option.device = device;
                 audioSelect.appendChild(option);
             });
+
+        console.log("make Device List Step 4");
 
         if (CurrentVideoDevice)
             videoSelect.value = CurrentVideoDevice.deviceId;
