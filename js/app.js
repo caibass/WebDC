@@ -13163,7 +13163,8 @@ async function makeDeviceList() {
 
         console.log("make Device List Step 1");
 
-        const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
+        let devices = await navigator.mediaDevices.enumerateDevices();
+        devices = devices.filter(
             device => device.deviceId.length > 20
         );
 
