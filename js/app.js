@@ -13286,7 +13286,8 @@ async function selectAudioDefaultDevice(devices) {
 // 請求權限並顯示裝置選項
 async function initializeDevices() {
     try {
-        const hasPermissions = await checkMediaPermissions();
+        //const hasPermissions = await checkMediaPermissions();
+        const hasPermissions = await checkCameraPermission();
 
         if (hasPermissions) {
             PreviousDevices = await makeDeviceList();
@@ -13310,16 +13311,40 @@ async function initializeDevices() {
             } else {
                 setRecordBottonEnable(false);
             }
-        } else {
-            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            stream.getTracks().forEach(track => track.stop());
-            initializeDevices();
         }
+        // else {
+        //     let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        //     stream.getTracks().forEach(track => track.stop());
+        //     initializeDevices();
+        // }
 
     } catch (error) {
         console.log(error);
         alert("Please connect the camera.");
         connectError();
+    }
+}
+
+async function checkCameraPermission() {
+    try {
+        // 嘗試請求攝影機權限
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        console.log("Camera / Audio permission granted.");
+
+        // 停止攝影機流
+        stream.getTracks().forEach(track => track.stop());
+
+        return true;
+    } catch (error) {
+        if (error.name === "NotAllowedError") {
+            console.warn("Camera permission denied.");
+        } else if (error.name === "NotFoundError") {
+            console.warn("No camera found on the device.");
+        } else {
+            console.error("An error occurred:", error);
+        }
+
+        return false;
     }
 }
 
