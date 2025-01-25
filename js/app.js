@@ -13310,7 +13310,12 @@ async function initializeDevices() {
             } else {
                 setRecordBottonEnable(false);
             }
+        } else {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            stream.getTracks().forEach(track => track.stop());
+            initializeDevices();
         }
+
     } catch (error) {
         console.log(error);
         alert("Please connect the camera.");
@@ -13339,7 +13344,7 @@ async function checkMediaPermissions() {
             return true;
         }
     } catch (error) {
-        console.error('無法檢查權限:', error);
+        console.log('無法檢查權限:', error);
         connectError();
         return false;
     }
