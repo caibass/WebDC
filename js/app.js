@@ -272,6 +272,7 @@ function createToolBar(btnData, cssCfg, parentId, id, position, funcClick) {
 
 	if ('top-left' === position) {
 		offsetY = 0;
+		//isFullW = false;
 		isFullW = true;
 	}
 
@@ -336,7 +337,7 @@ function createToolBar(btnData, cssCfg, parentId, id, position, funcClick) {
 			{
 				top: 0 + 'px',
 				height: cssCfg.height + 'px',
-				width: 'calc(100%)',
+				width: 'calc(100% - 48px)',
 				background: appCfg.toolBarColorLeave,
 				opacity: appCfg.toolBarOpacityLeave,
 				position: 'absolute',
@@ -403,10 +404,10 @@ function setToolBarBtnPic(btnData, idx, state) {
 			opacity = appCfg.toolBarOpacityEnter;
 		}
 		else if (state === MouseStatus.normal) {
-			// color = appCfg.toolBarColorHide;
-			// opacity = appCfg.toolBarOpacityHide;
-			color = appCfg.toolBarColorLeave;
-			opacity = appCfg.toolBarOpacityLeave;
+			color = appCfg.toolBarColorHide;
+			opacity = appCfg.toolBarOpacityHide;
+			// color = appCfg.toolBarColorLeave;
+			// opacity = appCfg.toolBarOpacityLeave;
 		}
 		else {
 			color = appCfg.toolBarColorClick;
@@ -452,8 +453,8 @@ function updateToolBar(btnData) {
 }
 
 function getToolBarSelectedBtnIdx(btnData, groupId) {
-	var i;
-	var len = btnData.length;
+	let i;
+	const len = btnData.length;
 
 	for (i = 0; i < len; i++) {
 		if (groupId === btnData[i][BtnData.groupId]) {
@@ -485,13 +486,13 @@ function selectToolBarBtn(btnData, idx) {
 
 	var state = 1;
 
-	if (btnData[idx][BtnData.state]) state = 0;
+	if (btnData[idx][BtnData.state]) {
+		state = 0;
+	}
 
 	// get group id
 
-	var groupId;
-
-	groupId = btnData[idx][BtnData.groupId];
+	let groupId = btnData[idx][BtnData.groupId];
 
 	if (getToolBarGroupIdBtnCnt(btnData, groupId) > 1) {
 		state = 1;
@@ -500,7 +501,7 @@ function selectToolBarBtn(btnData, idx) {
 	// clear selected button state
 
 	if (groupId > 0) {
-		var preSelected = getToolBarSelectedBtnIdx(btnData, groupId);
+		let preSelected = getToolBarSelectedBtnIdx(btnData, groupId);
 
 		if (preSelected >= 0) {
 			if (groupId === btnData[preSelected][BtnData.groupId]) {
@@ -508,6 +509,8 @@ function selectToolBarBtn(btnData, idx) {
 				setToolBarBtnPic(btnData, preSelected, MouseStatus.normal);
 			}
 		}
+
+		if (preSelected == idx) return;
 	}
 
 	// set and update selected button
@@ -2547,8 +2550,8 @@ var appCfg =
 
 	// video stream
 
-	defPreviewRsoX: 1280,
-	defPreviewRsoY: 720,
+	defPreviewRsoX: 1920,
+	defPreviewRsoY: 1080,
 
 	// drawing board 
 
@@ -2659,7 +2662,7 @@ var appCfg =
 var drawingToolBarData =
 	[
 		// element id          pic filename             selected	group id
-		["sys_fullPhoto", "fullPhoto.png", 0, 1],
+		//["sys_fullPhoto", "fullPhoto.png", 0, 1],
 		["btn_freehand", "freeHand.png", 0, 1],
 		["btn_arrow", "arrow.png", 0, 1],
 		["btn_eraser", "ereser.png", 0, 1],
@@ -2691,7 +2694,7 @@ var previewToolBarData =
 		["btn_capture", "capture.png", 0, 0],
 		["btn_record", "record2.png", 0, 0],
 		["btn_freeze", "Freeze.png", 0, 3],
-		["btn_timesave", "timesave.png", 0, 0],
+		// ["btn_timesave", "timesave.png", 0, 0],
 		["btn_mirrow", "mirrow.png", 0, 5],
 		["btn_flip", "flip.png", 0, 6],
 		["btn_config", "config.png", 0, 0],
@@ -2746,7 +2749,7 @@ var modeToolBarData =
 		// element id          pic filename             selected	group id
 		["mode_about", "about.png", 0, 0],
 		["mode_preview", "preview.png", 1, 1],
-		["mode_playback", "playback.png", 0, 1],
+		//["mode_playback", "playback.png", 0, 1],
 		["mode_drawingBoard", "drawingboard.png", 0, 1],
 		//[ "mode_scan",         "scanMode.png",	        0,			1 ],
 		//[ "mode_multiscan",    "MultiscanMode.png",     0,			1 ],
@@ -2760,7 +2763,7 @@ var sysToolBarData =
 		//[ "sys_fullPhoto",     "fullPhoto.png",		    0,			1 ],
 		//[ "sys_smallScreen",   "screenSmall.png",		0,			1 ],
 
-		["sys_fullPhoto0", "fullPhoto.png", 0, 1],
+		["sys_fullPhoto", "fullPhoto.png", 0, 1],
 	];
 
 var thumbnailToolBarData =
@@ -2792,7 +2795,8 @@ var picPlaybackToolBarData =
 var drawingBoardToolBarData =
 	[
 		// element id                   pic filename                selected	group id
-		["dbbtn_savePlayback", "savePlayback.png", 0, 0],
+		["dbbtn_savePlayback", "capture.png", 0, 0],
+		//["dbbtn_savePlayback", "savePlayback.png", 0, 0],
 		["dbbtn_redo", "redo.png", 0, 0],
 		["dbbtn_undo", "undo.png", 0, 0],
 		["dbbtn_importPic", "inportPic.png", 0, 0],
@@ -2879,12 +2883,12 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0109</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0123.2</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
 	'<BR>' +
-	'<font size="2" color="#FAFAFA"><center>Inswan Copyright  ©  2024. All rights reserved.</center></font>';
+	'<font size="2" color="#FAFAFA"><center>Inswan Copyright  ©  2025. All rights reserved.</center></font>';
 
 function preInitAboutDlg() {
 	appCfg.aboutWinW = 400;
@@ -3083,6 +3087,7 @@ function createImageCanvas(parentId, childId, w, h) {
 
 function hideCanvasGroup(parentId) {
 	var canvasTbl = [
+		'videoOrg',
 		'WebGL',
 		'baseImageCanvas',
 		'imageProcessCanvas',
@@ -3109,10 +3114,11 @@ function createCanvasGroup(parentId, w, h) {
 	var childId;
 
 	var canvasTbl = [
+		'videoOrg',
 		'WebGL',
 		'baseImageCanvas',
 		'imageProcessCanvas',
-		'drawingCanvas',
+		//'drawingCanvas',
 		'tempDrawingCanvas',
 		'combineCanvas',
 	];
@@ -3123,6 +3129,10 @@ function createCanvasGroup(parentId, w, h) {
 		childId = parentId + seperator + canvasTbl[i];
 		createImageCanvas(parentId, childId, w, h);
 	}
+
+	childId = parentId + seperator + 'drawingCanvas';
+	let maxLength = Math.max(window.screen.width, window.screen.height) * 1.5;
+	createImageCanvas(parentId, childId, maxLength, maxLength);
 }
 
 function resetCanvasGroupSize(modeCfg, w, h) {
@@ -3134,7 +3144,7 @@ function resetCanvasGroupSize(modeCfg, w, h) {
 		'WebGL',
 		'baseImageCanvas',
 		'imageProcessCanvas',
-		'drawingCanvas',
+		//'drawingCanvas',
 		'tempDrawingCanvas',
 		'combineCanvas',
 	];
@@ -3143,6 +3153,9 @@ function resetCanvasGroupSize(modeCfg, w, h) {
 		childId = modeCfg.baseId + seperator + canvasTbl[i];
 		updateCanvasSize(childId, w, h);
 	}
+
+	childId = modeCfg.baseId + seperator + 'videoOrg';
+	updateCanvasSize(childId, videoW, videoH);
 }
 
 function getCanvasGroupContext(modeCfg) {
@@ -3313,79 +3326,40 @@ var cssCommonSizeObj =
 }
 
 function adjImageDisplayArea() {
-	var id$;
-	var totalW, totalH;
-	var x, y, w, h;
+	let id$;
+	let totalW, totalH;
+	let x, y, w, h;
 
 	if (fullPhotoMode) {
-		totalW = winW;
-		totalH = winH;
+		w = totalW = winW;
+		h = totalH = winH;
+		x = 0;
+		y = 0;
 	}
 	else {
-
-		totalW = winW - appBaseCfg.iconW * 2;
-		totalH = winH - titleH - appBaseCfg.drawSetH;
+		w = totalW = winW - appBaseCfg.iconW * 2;
+		h = totalH = winH - titleH - appBaseCfg.drawSetH;
+		x = appBaseCfg.iconW;
+		y = titleH;
 	}
-
-	// if(appFC.curMode && appFC.curMode.baseId == 'drawingArea')
-	// {
-	// 	console.log("TEST adjimageDisplay");
-	// 	w = totalW;
-	// 	h = totalH;
-	// 	x = (winW - totalW) / 2;
-	// 	y = 0;
-	// }
-	// else
-	{
-		if (totalW * appFC.imgH < totalH * appFC.imgW) {
-			// use full display width
-
-			w = totalW;
-			x = (winW - totalW) / 2;
-			//x = 0;
-
-			h = Math.floor(w * appFC.imgH / appFC.imgW);
-			y = Math.floor((totalH - h) / 2);
-		}
-		else {
-			// use full display height
-
-			h = totalH;
-			y = 0;
-
-			w = Math.floor(h * appFC.imgW / appFC.imgH);
-			x = Math.floor((totalW - w) / 2);// + appBaseCfg.iconW;
-
-			if (!fullPhotoMode)
-				x += appBaseCfg.iconW;
-		}
-	}
-
-	if (!fullPhotoMode)
-		y += titleH;
 
 	cssCommonSizeObj.left = x;
 	cssCommonSizeObj.top = y;
-
-	// cssCommonSizeObj.width = '1920px';
-	// cssCommonSizeObj.height = '1080px';
 	cssCommonSizeObj.width = w;
 	cssCommonSizeObj.height = h;
 
 	id$ = $('#displayCanvas');
-
 	id$.css(cssCommonSizeObj);
-
-	// id$.attr('width', '1920px');
-	// id$.attr('height', '1080px');
 	id$.attr('width', w);
 	id$.attr('height', h);
 
 	dispX = x;
 	dispY = y;
-
 	dispW = w;
 	dispH = h;
+
+	calculateCropVertices(videoW, videoH, w, h);
+	//console.log("adjImageDisplayArea Disp", dispX, dispY, dispW, dispH);
 }
 
 
@@ -3909,7 +3883,7 @@ function initSettingDlg() {
 	var totalW, totalH;
 	var curX, curY;
 
-	var noSettingLine = 5;
+	var noSettingLine = 3; //5; disable resolution
 
 	if (1 === appCfg.disableDrawTextSetting) {
 		noSettingLine = 1;
@@ -3935,16 +3909,16 @@ function initSettingDlg() {
 	// $('#sdClsoeIcon').on('click', previewSetttingDlgCloseClick);
 
 	// video resolution icon
-	curY = + appCfg.sdIconH;
-	curX = appCfg.sdFrameGapX;
-	createSettingDlgIcon('settingDlg', 'sdVideoRsoIcon', 'setting_reslution.png', curX, curY);
+	// curY = + appCfg.sdIconH;
+	// curX = appCfg.sdFrameGapX;
+	// createSettingDlgIcon('settingDlg', 'sdVideoRsoIcon', 'setting_reslution.png', curX, curY);
 
 	// video resolution scroll bar
-	curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
-	createVideoResolutionScrollBar('settingDlg', 'sdVideoRsoScrollbar', appFC.curVideoResolutionList, curX, curY, appCfg.sdVideoRsoW);
+	// curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+	// createVideoResolutionScrollBar('settingDlg', 'sdVideoRsoScrollbar', appFC.curVideoResolutionList, curX, curY, appCfg.sdVideoRsoW);
 
 	// video selector icon
-	curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+	// curY += (appCfg.sdIconH + appCfg.sdGroupGap);
 	curX = appCfg.sdFrameGapX;
 	createSettingDlgIcon('settingDlg', 'sdVideoinputIcon', 'setting_videoinput.png', curX, curY);
 
@@ -5632,72 +5606,6 @@ async function lsSaveFilesToSelectedFolder(eleId, format) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// update stream frame 
-///////////////////////////////////////////////////////////////////////////////////////////
-
-var lastTime = -1;
-var canvasGL;
-
-function updateVideoStreamFrame() {
-	if (!videoElement) {
-		videoElement = document.getElementById('videoSrc');
-	}
-
-	if (!canvasGL) {
-		canvasGL = document.getElementById('previewArea-WebGL');
-	}
-
-	if (IsDeviceConnected) {
-		// WebGL Render
-		gl.bindTexture(gl.TEXTURE_2D, texture);
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, videoElement);
-		gl.useProgram(program);
-
-		// Set attributes
-		gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-		gl.enableVertexAttribArray(positionLocation);
-		gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-
-		gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-		gl.enableVertexAttribArray(texCoordLocation);
-		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
-
-		// Set brightness uniform
-		//gl.uniform1f(brightnessLocation, 1.2); // Example: Slightly increase brightness
-		gl.uniform1f(brightnessLocation, parseFloat(document.getElementById('configDlg-brightness-slider').value));
-		const whiteBalanceValue = parseFloat(document.getElementById('configDlg-whiteBalence-slider').value);
-		gl.uniform3f(whiteBalanceLocation, whiteBalanceValue, 1.0, 2.0 - whiteBalanceValue);
-
-		gl.clear(gl.COLOR_BUFFER_BIT);
-		gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-
-
-		var time = videoElement.currentTime;
-
-		if (time && (time !== lastTime)) {
-			//console.log('time: ' + time);
-			lastTime = time;
-			videoLastUpdateTime = new Date();
-			previewVideoStreamUpdate(canvasGL);
-			//previewVideoStreamUpdate(videoElement);
-		}
-
-		const track = window.stream.getVideoTracks()[0];
-		const settings = track.getSettings();
-		//console.log(settings.width, settings.height);
-
-		if (previewModeCfg.imgW != settings.width) {
-			console.log("resolution didn't match");
-			fcChangeBaseImageSizeEx(settings.width, settings.height);
-			//gl.viewport(0, 0, settings.width, settings.height);
-		}
-	}
-
-	requestAnimationFrame(updateVideoStreamFrame);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 // active check 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -5715,7 +5623,7 @@ function intVideoStreamActiveCheck() {
 				window.stream.active == false &&
 				chrome.WindowState == 'minimized')) {
 			//connectVideoSrc();
-			await startVideo();
+			//await startVideo();
 		}
 	}, 3000);
 }
@@ -5801,7 +5709,7 @@ function sysToolBarOnClick(event) {
 
 		// break;
 
-		case "sys_fullPhoto0":
+		case "sys_fullPhoto":
 			switchFullPhotoMode(!fullPhotoMode);
 			// fullPhotoMode = !fullPhotoMode;
 			// window.onresize();
@@ -6278,7 +6186,11 @@ function drawingToolBarOnClick(event) {
 	} else {
 		for (i = 0; i < fnTbl.length; i++) {
 			if (event.target.id == fnTbl[i][DrawData.id]) {
-				appFC.fnDraw = fnTbl[i][DrawData.fn];
+				if (appFC.fnDraw == fnTbl[i][DrawData.fn]) {
+					appFC.fnDraw = undefined;
+				} else {
+					appFC.fnDraw = fnTbl[i][DrawData.fn];
+				}
 			}
 		}
 		fcCloseActiveDlg();
@@ -7296,7 +7208,7 @@ function previewModeTaskCtrl(isEnter) {
 }
 
 function previewModeStart() {
-	previewCheckReqVideoResolution();
+	//previewCheckReqVideoResolution();
 
 	previewModeOnResize();
 }
@@ -7405,10 +7317,12 @@ async function previewToolBarOnClick(event) {
 			break;
 
 		case "btn_setting":
+			//testDeviceAvailability(CurrentVideoDevice); break;
 			fcToogleDlg("btn_setting", previewSettingDlgOpen, previewSettingDlgClose);
 			break;
 
 		case "btn_capture":
+			//LogDeviceList(); break;
 			if (typeof window.stream == "undefined" ||
 				!window.stream.active ||
 				!IsDeviceConnected)
@@ -7442,11 +7356,13 @@ async function previewToolBarOnClick(event) {
 			break;
 
 		case "btn_record":
+			// let CurrentDevices = await makeDeviceList();
+			// console.log(CurrentDevices);
+			// break;
 			if (typeof window.stream == "undefined" ||
 				!window.stream.active ||
 				!IsDeviceConnected) {
 				console.log("window.stream", window.stream);
-				console.log("window.stream.active", window.stream.active);
 				console.log("IsDeviceConnected", IsDeviceConnected);
 				break;
 			}
@@ -7661,14 +7577,6 @@ function previewVideoStreamUpdate(videoCanvas) {
 
 	previewUpdateFrameRate();
 
-	// if (appFC.checkVideoResolution) {
-	// 	appFC.checkVideoResolution = false;
-
-	// 	previewCheckReqVideoResolution();
-
-	// 	return;
-	// }
-
 	if (mc.freeze && IsScanMode) return;
 
 	// r = [0], g = [6], b = [12], a = [18]
@@ -7685,11 +7593,36 @@ function previewVideoStreamUpdate(videoCanvas) {
 		mc.baseImageContext.filter = 'url(#filter)';
 	}
 
+	//console.log("Window W,H", winW, winH);
 	if (mc.freeze) {
 		previewOverlayCanvas(mc.baseImageContext, backupFrame);
 	}
 	else {
 		previewOverlayCanvas(mc.baseImageContext, videoCanvas);
+
+		//let mc = previewModeCfg;
+		// let srcX, srcY, srcW, srcH;
+		// const dispWHR = dispW / dispH;
+		// const srcWHR = mc.imgW / mc.imgH
+
+		// if (dispWHR > srcWHR) {
+		// 	// crop top and bottom
+		// 	srcX = 0;
+		// 	srcW = mc.imgW;
+		// 	srcH = mc.imgW / dispWHR;
+		// 	srcY = (mc.imgH - srcH) / 2;
+		// } else {
+		// 	// crop left and right
+		// 	srcY = 0;
+		// 	srcH = mc.imgH;
+		// 	srcW = mc.imgH * dispWHR;
+		// 	srcX = (mc.imgW - srcW) / 2;
+		// }
+
+		// mc.baseImageContext.drawImage(videoCanvas, srcX, srcY, srcW, srcH, 0, 0, dispX, dispY);
+
+		//console.log(mc.imgW, mc.imgH);
+		//mc.baseImageContext.drawImage(videoCanvas, 0, 0, mc.imgW, mc.imgH);
 	}
 
 	previewImageProcess();
@@ -7782,15 +7715,11 @@ function previewRedoUndo() {
 
 	if (mc.reqUndo) {
 		mc.reqUndo = false;
-
 		fcDrawingUndo(mc);
-	}
-	else if (mc.reqRedo) {
+	} else if (mc.reqRedo) {
 		mc.reqRedo = false;
-
 		fcDrawingRedo(mc);
-	}
-	else {
+	} else {
 		previewMergeDrawing();
 	}
 }
@@ -7814,12 +7743,29 @@ function previewMergeDrawing() {
 	if (mc.mergeTempDraw) {
 		mc.mergeTempDraw = false;
 
-		previewOverlayCanvas(mc.drawingContext, mc.tempDrawingCanvas);
+		//previewOverlayCanvas(mc.drawingContext, mc.tempDrawingCanvas);
+
+		// ******
+		// const windowX = window.screenX || window.screenLeft;
+		// const windowY = window.screenY || window.screenTop;
+		// const windowWidth = window.innerWidth;
+		// const windowHeight = window.innerHeight;
+		mc.drawingContext.drawImage(
+			mc.tempDrawingCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
 
 		fcPushDrawingCanvas(mc);
 	}
 
-	previewOverlayCanvas(mc.combineContext, mc.drawingCanvas);
+	//previewOverlayCanvas(mc.combineContext, mc.drawingCanvas);
+
+	mc.combineContext.drawImage(
+		mc.drawingCanvas,
+		0, 0, mc.imgW, mc.imgH,
+		0, 0, mc.imgW, mc.imgH
+	);
 
 	previewMergeTempDrawing();
 }
@@ -7828,7 +7774,13 @@ function previewMergeTempDrawing() {
 	var mc = previewModeCfg;
 
 	if (mc.hasTempDraw) {
-		previewOverlayCanvas(mc.combineContext, mc.tempDrawingCanvas);
+		//previewOverlayCanvas(mc.combineContext, mc.tempDrawingCanvas);
+
+		mc.combineContext.drawImage(
+			mc.tempDrawingCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
 	}
 
 	previewDisplay();
@@ -7934,7 +7886,7 @@ function previewSettingDlgClose() {
 
 	checkVideoSource();
 
-	previewCheckReqVideoResolution();
+	//previewCheckReqVideoResolution();
 
 	updateTranslatedString();
 }
@@ -7943,11 +7895,6 @@ function previewSetttingDlgCloseClick() {
 	fcCloseActiveDlg();
 }
 
-window.addEventListener("orientationchange", () => {
-	appFC.checkVideoResolution = true;
-	//previewCheckReqVideoResolution();
-});
-
 function previewCheckReqVideoResolution() {
 	const eleId = document.getElementById('sdVideoRsoScrollbar');
 	const idx = eleId.selectedIndex;
@@ -7955,12 +7902,12 @@ function previewCheckReqVideoResolution() {
 	appFC.reqImgW = appFC.curVideoResolutionList[idx][VrField.w];
 	appFC.reqImgH = appFC.curVideoResolutionList[idx][VrField.h];
 
-	if ((appFC.reqImgW != appFC.imgW) || (appFC.reqImgH != appFC.imgH)) {
-		//alert("ChangeImageSize " + appFC.reqImgW + ", " + appFC.reqImgH);
+	// if ((appFC.reqImgW != appFC.imgW) || (appFC.reqImgH != appFC.imgH)) {
+	// 	//alert("ChangeImageSize " + appFC.reqImgW + ", " + appFC.reqImgH);
 
-		fcChangeBaseImageSize(appFC.reqImgW, appFC.reqImgH);
-		fcUpdateSelVideoResolutionIdx(idx);
-	}
+	// 	fcChangeBaseImageSize(appFC.reqImgW, appFC.reqImgH);
+	// 	fcUpdateSelVideoResolutionIdx(idx);
+	// }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -9646,14 +9593,14 @@ var appFC =
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 function fcShowToolBar(mode) {
-	//var sysToolBar = document.getElementById("sysToolBar");		
+	//var sysToolBar = document.getElementById("sysToolBar");
 	var titleBar = document.getElementById("appTitle");
 	if (titleBar) showToolBar("appTitle", mode);
 
-	// showToolBar("sys_close", mode);
+	//showToolBar("sys_close", mode);
 	// showToolBar("sys_fullScreen", mode);
 	// showToolBar("sys_smallScreen", mode);
-	showToolBar("sysToolBar", !mode);
+	//showToolBar("sysToolBar", !mode);
 	showToolBar("modeToolBar", mode);
 	showToolBar("bottomToolBarData",
 		(appFC.curMode.baseId == "previewArea") &&
@@ -9734,7 +9681,6 @@ function fcUpdateImgSize(w, h) {
 
 function fcUpdateImage() {
 	var cm = appFC.curMode;
-
 
 	//imageDisplayContext.drawImage(cm.combineCanvas, 0, 0, cm.imgW, cm.imgH, 0, 0, 1920, 1080);
 	imageDisplayContext.drawImage(cm.combineCanvas, 0, 0, cm.imgW, cm.imgH, 0, 0, dispW, dispH);
@@ -9931,7 +9877,7 @@ function fcOnMouseMove(event) {
 		}
 	}
 
-	//setHideIconCountdown();
+	setHideIconCountdown();
 }
 
 function fcOnMouseDown(event) {
@@ -9998,7 +9944,8 @@ function fcOnMouseOut(event) {
 
 function fcClearCanvas(canvas) {
 	//context.clearRect(0, 0, canvas.width, canvas.height);
-	canvas.width += 0;
+	if (canvas)
+		canvas.width += 0;
 }
 
 function fcClearDispCanvas() {
@@ -10061,7 +10008,8 @@ function fcUpdateDrawStyle() {
 }
 
 function fcDrawConvertRatio() {
-	return appFC.imgW / dispW;
+	return 1;
+	//return appFC.imgW / dispW;
 }
 
 function fcSetDrawStartPos(event) {
@@ -10187,7 +10135,12 @@ function fcLoadCanvasFromArray(mc) {
 	storeCanvas.src = mc.canvasArray[mc.canvasStep];
 	storeCanvas.onload = function () {
 		fcClearCanvas(mc.drawingCanvas);
-		mc.drawingContext.drawImage(storeCanvas, 0, 0, mc.imgW, mc.imgH);
+		//mc.drawingContext.drawImage(storeCanvas, 0, 0, mc.imgW, mc.imgH);
+		mc.drawingContext.drawImage(
+			storeCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
 		if (mc.imageProcess) mc.imageProcess();
 	}
 }
@@ -10278,8 +10231,9 @@ function fcUpdateFontCfg() {
 // base image resolution change 
 ///////////////////////////////////////////////////////////////////////////////////////////
 async function fcChangeBaseImageSize(w, h) {
-	console.log("fcChangeBaseImageSize", w, h);
 	var mc = appFC.curMode;
+
+	console.log("Change BaseImageSize", w, h);
 
 	// if (mc.baseId == "previewArea") {
 	// 	console.log("mc == previewModeCfg");
@@ -10290,31 +10244,11 @@ async function fcChangeBaseImageSize(w, h) {
 
 	previewModeCfg.imgW = w;
 	previewModeCfg.imgH = h;
-	appFC.imgW = w;
-	appFC.imgH = h;
+	drawingBoardModeCfg.imgW = w;
+	drawingBoardModeCfg.imgH = h;
 
-	// if (screen.width < screen.height) {
-	// 	if (window.matchMedia("(orientation: portrait)").matches) {
-	// 		// 直的
-	// 		if (h < w) {
-	// 			alert("SWAP I " + appFC.reqImgW + "," + appFC.reqImgH);
-	// 			let tmp = w;
-	// 			w = h;
-	// 			h = tmp;
-	// 		}
-	// 	}
-	// 	else {
-	// 		// 橫的
-	// 		if (h > w) {
-	// 			alert("SWAP II " + appFC.reqImgW + "," + appFC.reqImgH);
-	// 			let tmp = w;
-	// 			w = h;
-	// 			h = tmp;
-	// 		}
-	// 	}
-	// }
-
-	resetCanvasGroupSize(mc, w, h);
+	resetCanvasGroupSize(previewModeCfg, w, h);
+	resetCanvasGroupSize(drawingBoardModeCfg, w, h);
 	fcClearDrawingCanvas();
 	fcResetCanvasArray(mc);
 
@@ -10382,6 +10316,21 @@ function fcSaveCanvasToFile_withrefleshGallery(canvas) {
 	fcSaveCanvasToFile(canvas, "", true);
 }
 
+async function saveBlobToMp4(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'Mp4 Files',
+				accept: {
+					'mp4/plain': ['.mp4'],
+				},
+			},
+		],
+	};
+	saveBlobToFile(blob, options);
+}
+
 async function saveBlobToWebm(suggName, blob) {
 	const options = {
 		suggestedName: suggName,
@@ -10394,7 +10343,6 @@ async function saveBlobToWebm(suggName, blob) {
 			},
 		],
 	};
-
 	saveBlobToFile(blob, options);
 }
 
@@ -10411,7 +10359,9 @@ async function saveBlobToJpg(suggName, blob) {
 		],
 	};
 
-	saveBlobToFile(blob, options);
+	downloadBlob(blob, suggName);
+
+	//saveBlobToFile(blob, options);
 }
 
 async function saveBlobToTiff(suggName, blob) {
@@ -10502,14 +10452,14 @@ async function fcSaveCanvasToFile(canvas, DateStr = "", RefleshGallery = false) 
 	ctxT.drawImage(canvas, 0, 0, subW, subH);
 
 
-	// canvas.toBlob(
-	// 	function(blob)
-	// 	{
-	// 		saveBlobToJpg(DateStr, blob);
-	// 	},
-	// 	'image/jpeg',
-	// 	1.0
-	// );
+	canvas.toBlob(
+		function (blob) {
+			saveBlobToJpg(DateStr, blob);
+		},
+		'image/jpeg',
+		1.0
+	);
+	return;
 
 	const db = await openDatabase();
 	const transaction = db.transaction(storeName, 'readwrite');
@@ -10737,14 +10687,14 @@ function fcUpdateSysInfoWin() {
 		//obj.style.width = '60px';
 	}
 
-	obj = document.getElementById("recordtime");
-	if (obj) {
-		var pos = (winW / 2 - 32);
-		if (pos < offsetLimitX)
-			pos = offsetLimitX;
-		obj.style.left = pos + 'px';
-		//obj.style.width = '60px';
-	}
+	// obj = document.getElementById("recordtime");
+	// if (obj) {
+	// 	var pos = (winW / 2 - 32);
+	// 	if (pos < offsetLimitX)
+	// 		pos = offsetLimitX;
+	// 	obj.style.left = pos + 'px';
+	// 	//obj.style.width = '60px';
+	// }
 
 	// obj = document.getElementById("recordtime");
 	// if (obj && IsRecording) {
@@ -11064,6 +11014,9 @@ function fcInitCropWinEvent() {
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 function fcUpdateVideoResolution() {
+
+	return;
+
 	let eleId;
 	let idx;
 
@@ -11104,9 +11057,9 @@ function fcUpdateVideoResolution() {
 		// }
 
 
-		if (fcIsModeActive(previewModeCfg)) {
-			appFC.checkVideoResolution = true;
-		}
+		// if (fcIsModeActive(previewModeCfg)) {
+		// 	appFC.checkVideoResolution = true;
+		// }
 	}
 }
 
@@ -11219,7 +11172,6 @@ window.onresize = function (event) {
 function updateWinSize() {
 	winW = window.innerWidth;
 	winH = window.innerHeight;
-
 	//console.log('win size = ' + winW + 'x' + winH);
 }
 
@@ -11228,26 +11180,7 @@ function updateSize() {
 
 	updateTitleBarSize();
 
-	// if (screen.width < screen.height) {
-	// 	if (window.matchMedia("(orientation: portrait)").matches) {
-	// 		// 直的
-	// 		if (appFC.imgH < appFC.imgW) {
-	// 			var imgW = appFC.imgW;
-	// 			appFC.imgW = appFC.imgH;
-	// 			appFC.imgH = imgW;
-	// 		}
-	// 	}
-	// 	else {
-	// 		// 橫的
-	// 		if (appFC.imgH > appFC.imgW) {
-	// 			var imgW = appFC.imgW;
-	// 			appFC.imgW = appFC.imgH;
-	// 			appFC.imgH = imgW;
-	// 		}
-	// 	}
-	// }
-
-	adjImageDisplayArea();
+	adjImageDisplayAreaEx();
 
 	fcOnResize();
 
@@ -11609,7 +11542,7 @@ async function refleshGallery() {
 		var startIndex = ItemsPerPage * appFC.thumbnailCurrPage;
 		var endIndex = Math.min(startIndex + ItemsPerPage, ValidEntry);
 
-		console.log("Gallery RNG", startIndex, endIndex, ValidEntry);
+		//console.log("Gallery RNG", startIndex, endIndex, ValidEntry);
 
 		const transaction = db.transaction(storeName, 'readonly');
 		const store = transaction.objectStore(storeName);
@@ -11653,7 +11586,7 @@ function galleryFillThumbnailDiv_Page() {
 	playbackShowThumbnail(false);
 	$('#thumbDiv').empty();
 
-	console.log(galleryData);
+	//console.log(galleryData);
 
 	// var ValidEntry = galleryData.length;
 
@@ -12794,7 +12727,7 @@ function showAllToolBars(visible) {
         "btn_setting",
         "btn_capture",
         "btn_freeze",
-        "btn_timesave",
+        //"btn_timesave",
         "btn_mirrow",
         "btn_flip",
         //'btn_brightness',
@@ -12853,27 +12786,28 @@ var previewStream;
 
 async function StartRecord() {
     console.log("Start Recording");
+
     if (!IsRecording)//(appFC.imgW != 1280 || appFC.imgH != 720)
     {
         IsRecording = true;
 
-        OldImgW = appFC.imgW;
-        OldImgH = appFC.imgH;
+        // OldImgW = appFC.imgW;
+        // OldImgH = appFC.imgH;
 
         showRecordBtn(false);
 
-        showAllToolBars(false);
+        //showAllToolBars(false);
         fcCloseActiveDlg();
         $("#btn_pause").show();
 
         // fcChangeBaseImageSize(1280, 720);
         // setTimeout(StartRecord, 2500);
-        setTimeout(StartRecord, 500);
-        return;
+        //setTimeout(StartRecord, 500);
+        //return;
     }
 
     IsPause = false;
-    // showAllToolBars(false);
+    showAllToolBars(false);
     // fcCloseActiveDlg();
     // $("#btn_pause").show();	
 
@@ -12882,42 +12816,63 @@ async function StartRecord() {
     document.getElementById("recordtime").style.fontWeight = "bold";
     document.getElementById("recordtime").style.color = "red";
     document.getElementById("recordtime").style.position = "absolute";
-    document.getElementById("recordtime").style.bottom = "60px"; //"35px";
-    //document.getElementById("recordtime").style.right = 50 + "px";
-    document.getElementById("recordtime").style.left = (document.documentElement.clientWidth / 2 - 32) + "px";
+
+    document.getElementById("recordtime").style.top = (48 * 3.5 - 9) + "px"; //"35px";
+    document.getElementById("recordtime").style.left = 48 * 1.5 + "px";
+
+    //document.getElementById("recordtime").style.bottom = "60px"; //"35px";
+    //document.getElementById("recordtime").style.left = (document.documentElement.clientWidth / 2 - 32) + "px";
     document.getElementById("recordtime").style.visibility = "visible";
     //recordingsec = 0;
 
-    var getd = new Date();
+    let getd = new Date();
     recordingStartTime = getd.getTime();
     recordingPauseTime = 0;
     RecordingTimer();
 
 
     // record all canvas
-    var mc = previewModeCfg;
-    var canvas = mc['combineCanvas'];
-    //var canvas = document.querySelector("canvas");
+    // var mc = previewModeCfg;
+    // var canvas = mc['combineCanvas'];
+    let canvas = document.getElementById("previewArea-videoOrg");
+    console.log(canvas);
 
-    var selectedDeviceId = document.getElementById('sdAudioinputScrollbar').value;
-    console.log(selectedDeviceId);
-    const audioStream = await navigator.mediaDevices.getUserMedia({
-        audio: { deviceId: { exact: selectedDeviceId } }
-    });
+    // const audioStream = await navigator.mediaDevices.getUserMedia({
+    //     audio: { deviceId: { exact: CurrentAudioDevice.deviceId } }
+    // });
 
-    recordStream = canvas.captureStream();
-    audioStream.getAudioTracks().forEach(track => recordStream.addTrack(track));
+    const audioStream = null;
 
-    console.log(window.stream.getAudioTracks());
 
-    previewStream = window.stream;
-    window.stream = recordStream;
-    // recordStream = canvas.captureStream();
-    // if (window.stream != undefined) {
-    // 	window.stream.getAudioTracks()[0].enabled = true;
-    // 	recordStream.addTrack(window.stream.getAudioTracks()[0]);
-    // }
+    //window.stream.getAudioTracks()[0].enabled = true;
+    let canvasStream = canvas.captureStream();
+    console.log(canvasStream);
 
+    //合併音訊和視訊流
+    // recordStream = new MediaStream([
+    //     ...canvasStream.getTracks(),
+    //     ...audioStream.getTracks()
+    // ]);
+
+
+    if (audioStream && audioStream.getTracks()) {
+        recordStream = new MediaStream([
+            ...canvasStream.getTracks(),
+            ...audioStream.getTracks()
+        ]);
+    } else {
+        recordStream = new MediaStream(canvasStream.getTracks());
+    }
+
+
+    // 使用合併的流進行錄影
+    // const mediaRecorder = new MediaRecorder(combinedStream);
+    // mediaRecorder.ondataavailable = (event) => {
+    //     const blob = new Blob([event.data], { type: 'video/webm' });
+    //     const videoURL = URL.createObjectURL(blob);
+    //     console.log("Recording completed. Video URL:", videoURL);
+    // };
+    // mediaRecorder.start();
 
     recordedChunks = [];
 
@@ -12960,20 +12915,35 @@ async function StartRecord() {
     // 	mimeType: 'video/webm;codecs=vp8; '};
 
     mediaRecorder = new MediaRecorder(recordStream, options);
-    mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start();
+    //mediaRecorder.ondataavailable = handleDataAvailable;
 
-    showRecordBtn(true);
-
-    function handleDataAvailable(event) {
-        if (event.data && event.data.size > 0) {
+    //mediaRecorder = new MediaRecorder(recordStream);
+    mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+            console.log("data available");
             recordedChunks.push(event.data);
-            //DownloadRecord();
-            SaveRecord();
         } else {
             console.log("no data");
         }
-    }
+    };
+    mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: mimeType });
+        const filename = fcGetFilenameByDateTime(recordingFormat);
+        downloadBlob(blob, filename);
+    };
+    mediaRecorder.start(1000);
+
+    //showRecordBtn(true);
+
+    // function handleDataAvailable(event) {
+    //     if (event.data && event.data.size > 0) {
+    //         recordedChunks.push(event.data);
+    //         //DownloadRecord();
+    //         SaveRecord();
+    //     } else {
+    //         console.log("no data");
+    //     }
+    // }
 };
 
 async function StopRecord() {
@@ -12983,15 +12953,15 @@ async function StopRecord() {
     $("#btn_pause").hide();
     mediaRecorder.stop();
 
-    recordStream.getTracks().forEach(function (track) {
-        track.stop();
-        recordStream.removeTrack(track);
-    });
+    // recordStream.getTracks().forEach(function (track) {
+    //     track.stop();
+    //     recordStream.removeTrack(track);
+    // });
 
     // if (window.stream != undefined)
     // 	window.stream.getAudioTracks()[0].enabled = false;
 
-    window.stream = previewStream;
+    //window.stream = previewStream;
 
     var getd = new Date();
     var recordingNow = getd.getTime();
@@ -13031,12 +13001,17 @@ async function SaveRecord() {
     console.log("filename: " + filename);
 
     if (recordingFormat == 'mp4') {
-        const db = await openDatabase();
-        const transaction = db.transaction(storeName, 'readwrite');
-        const store = transaction.objectStore(storeName);
+        // const db = await openDatabase();
+        // const transaction = db.transaction(storeName, 'readwrite');
+        // const store = transaction.objectStore(storeName);
         let blob = new Blob(recordedChunks, { type: 'video/mp4' });
-        const data = { name: filename, video: blob };
-        store.add(data);
+
+        //await saveBlobToMp4(filename, blob);
+        downloadBlob(blob, filename);
+
+        // const data = { name: filename, video: blob };
+        // store.add(data);
+
         recordedChunks = [];
         blob = null;
     }
@@ -13046,12 +13021,17 @@ async function SaveRecord() {
 
         setTimeout(function () {
             ysFixWebmDuration(blob, recordingTotal, async function (fixedBlob) {
-                const db = await openDatabase();
-                const transaction = db.transaction(storeName, 'readwrite');
-                const store = transaction.objectStore(storeName);
-                const data = { name: filename, video: fixedBlob };
+                // const db = await openDatabase();
+                // const transaction = db.transaction(storeName, 'readwrite');
+                // const store = transaction.objectStore(storeName);
+                // const data = { name: filename, video: fixedBlob };
+
                 //const data = { name: filename, video: URL.createObjectURL(fixedBlob) };
-                store.add(data);
+
+                //await saveBlobToMp4(filename, fixedBlob);
+                downloadBlob(fixedBlob, filename);
+
+                //store.add(data);
                 recordedChunks = [];
                 blob = null;
             });
@@ -13104,9 +13084,9 @@ function DownloadRecord() {
 
             recordedChunks = [];
 
-            if (OldImgW != 1280 || OldImgH != 720) {
-                fcChangeBaseImageSize(OldImgW, OldImgH);
-            }
+            // if (OldImgW != 1280 || OldImgH != 720) {
+            //     fcChangeBaseImageSize(OldImgW, OldImgH);
+            // }
         });
     }, 100);
 };
@@ -13143,11 +13123,9 @@ function RecordingTimer() {
 // constant 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-let choseVideoSource = '';
-let currVideoSource = '';
-
 let videoW = appCfg.defPreviewRsoX;
 let videoH = appCfg.defPreviewRsoY;
+//let currStream = null;
 
 const videoElement = document.getElementById('videoSrc');
 let videoLastUpdateTime;
@@ -13170,33 +13148,164 @@ function isSupportedDevice(vid, pid) {
 // connect stream 
 ///////////////////////////////////////////////////////////////////////////////////////////
 let IsDeviceConnected = false;
+let PreviousDevices = [];
+// let CurrentDevices = [];
+let CurrentVideoDevice = null;
+let CurrentAudioDevice = null;
 
-// navigator.mediaDevices.ondevicechange = async () => {
-//     try {
-//         console.log("偵測到裝置變更，重新列出影片裝置...");
-//         //await navigator.mediaDevices.getUserMedia(con);
-//         //await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-//         await updateVideoDevices();
-//         //await startVideo();
-//     } catch (error) {
-//         // const canvas = document.getElementById('displayCanvas');
-//         // const ctx = canvas.getContext('2d');
-//         // ctx.fillStyle = 'rgba(128, 128, 128, 1)';
-//         // ctx.fillRect(0, 0, canvas.width, canvas.height);
-//     }
-// };
+async function makeDeviceList() {
+    try {
+        const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+        const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+
+        videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
+        audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
+
+        const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
+            device => device.deviceId.length > 20
+        );
+
+        devices
+            .filter(device =>
+                device.kind === "videoinput" &&
+                !device.label.includes("visual") &&
+                !device.label.includes("Basler") &&
+                !device.deviceId.includes("communications"))
+            .forEach(device => {
+                // Build video drop-down list
+                //if (testDeviceAvailability(device.deviceId)) {
+                const option = document.createElement('option');
+                option.value = device.deviceId;
+                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
+                option.device = device;
+                videoSelect.appendChild(option);
+                //}
+            });
+
+        devices
+            .filter(device =>
+                device.kind === "audioinput" &&
+                !device.deviceId.includes("default") &&
+                !device.deviceId.includes("communications"))
+            .forEach(device => {
+                // Build audio drop-down list
+                const option = document.createElement('option');
+                option.value = device.deviceId;
+                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
+                option.device = device;
+                audioSelect.appendChild(option);
+            });
+
+        if (CurrentVideoDevice)
+            videoSelect.value = CurrentVideoDevice.deviceId;
+        if (CurrentAudioDevice)
+            audioSelect.value = CurrentAudioDevice.deviceId;
+
+        return devices
+            .map(device => ({ deviceId: device.deviceId, label: device.label, kind: device.kind }));
+    } catch (error) {
+        console.error("無法列出影片裝置:", error);
+        connectError();
+        return false;
+    }
+}
+
+async function selectVideoDefaultDevice(devices) {
+    let device = null;
+
+    const videoDevices = devices
+        .filter(device =>
+            device.kind === "videoinput" &&
+            !device.label.includes('visual') &&
+            !device.label.includes('Basler') &&
+            !device.deviceId.includes("communications")
+        );
+
+    for (let i = 0; i < videoDevices.length; i++) {
+        if (await testDeviceAvailability(videoDevices[0].deviceId)) {
+            device = videoDevices[0];
+        } else {
+            console.log("XXX");
+            if (PreviousDevices)
+                PreviousDevices = PreviousDevices.filter(device => device.deviceId != videoDevices[0].deviceId);
+
+            const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+            const optionToRemove = Array.from(videoSelect.options).find(opt => opt.value === videoDevices[0].deviceId);
+            if (optionToRemove) {
+                optionToRemove.remove();
+            }
+        }
+        // if (i == 0) {
+        //     device = videoDevices[0];
+        // }
+
+        // if (checkDC(videoDevices[i])) {
+        //     device = videoDevices[i];
+        //     break;
+        // }
+    }
+
+    //console.log("Select Video Device", device);
+
+    return device;
+}
+
+async function selectAudioDefaultDevice(devices) {
+    let device = null;
+
+    const audioDevices = devices
+        .filter(device =>
+            device.kind === "audioinput" &&
+            !device.deviceId.includes('default') &&
+            !device.deviceId.includes("communications")
+        );
+
+    for (let i = 0; i < audioDevices.length; i++) {
+        if (i == 0) {
+            device = audioDevices[0];
+        }
+
+        if (checkDC(audioDevices[i])) {
+            device = audioDevices[i];
+            break;
+        }
+    }
+
+    return device;
+}
 
 // 請求權限並顯示裝置選項
 async function initializeDevices() {
     try {
-        await updateVideoDevices();
+        const hasPermissions = await checkMediaPermissions();
 
-        //$('#btn_record').css('background-image', "url('css/images/icon/record2.png')");
+        if (hasPermissions) {
+            PreviousDevices = await makeDeviceList();
+
+            console.log(PreviousDevices);
+
+            CurrentVideoDevice = await selectVideoDefaultDevice(PreviousDevices);
+            CurrentAudioDevice = await selectAudioDefaultDevice(PreviousDevices);
+
+            const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+            const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+
+            if (CurrentVideoDevice)
+                videoSelect.value = CurrentVideoDevice.deviceId;
+            if (CurrentAudioDevice)
+                audioSelect.value = CurrentAudioDevice.deviceId;
+
+            if (CurrentVideoDevice) {
+                await startVideo();
+                return;
+            } else {
+                setRecordBottonEnable(false);
+            }
+        }
     } catch (error) {
         console.log(error);
         alert("Please connect the camera.");
         connectError();
-        //$('#btn_record').css('background-image', "url('css/images/icon/record3.png')");
     }
 }
 
@@ -13204,20 +13313,20 @@ async function checkMediaPermissions() {
     try {
         // 檢查攝影機權限
         const cameraPermission = await navigator.permissions.query({ name: 'camera' });
-        //console.log('Camera Permission:', cameraPermission.state);
+        console.log('Camera Permission:', cameraPermission.state);
 
         // 檢查麥克風權限
         const microphonePermission = await navigator.permissions.query({ name: 'microphone' });
-        //console.log('Microphone Permission:', microphonePermission.state);
+        console.log('Microphone Permission:', microphonePermission.state);
 
         // 判斷是否有權限
         if (cameraPermission.state === 'granted' && microphonePermission.state === 'granted') {
-            //console.log('已取得攝影機和麥克風的權限');
+            console.log('已取得攝影機和麥克風的權限');
             return true;
         } else {
             //console.log('尚未取得完整權限');
             let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            //stream.getTracks().forEach(track => track.stop());
+            stream.getTracks().forEach(track => track.stop());
             return true;
         }
     } catch (error) {
@@ -13230,350 +13339,396 @@ async function checkMediaPermissions() {
 let supportedDevice = false;
 let connectedDevices = [];
 
-async function checkVideoDevices() {
-    try {
-        // connectedDevices = await navigator.usb.getDevices();
-        // console.log('目前連接的設備:', connectedDevices.map(device => device.productName));
-
-        // console.log("checkVideoDevices");
-        const videoSelect = document.getElementById(appFC.idVideoinputSelect);
-        const audioSelect = document.getElementById(appFC.idAudioinputSelect);
-
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
-        audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
-
-        let tmpVideoDeviceId = null;
-        let tmpAudioDeviceId = null;
-        let defaultVideoDeviceId = null;
-        let defaultAudioDeviceId = null;
-
-        console.log(devices);
-        supportedDevice = false;
-
-        devices.forEach(device => {
-            if (device.kind === 'videoinput') {
-
-                // if (device.label.indexOf('Document Camera') == -1)
-                //     return;
-
-                if (device.label.indexOf('visual') != -1)
-                    return;
-
-                if (device.label.indexOf('Basler') != -1)
-                    return;
-
-                if (tmpVideoDeviceId == null) {
-                    //console.log("set default camera");
-                    tmpVideoDeviceId = device.deviceId;
-                }
-
-                if (device.label.indexOf('Document Camera') != -1) {
-                    //console.log("find Document Camera");
-                    appFC.reqVideoResolutionList = DevList[0][2];
-                    supportedDevice = true;
-                    tmpVideoDeviceId = device.deviceId;
-                    defaultVideoDeviceId = device.deviceId;
-                }
-
-                // Build video drop-down list
-                const option = document.createElement('option');
-                option.value = device.deviceId;
-                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
-                option.isDC = supportedDevice;
-                videoSelect.appendChild(option);
-            }
-
-            if (device.kind === 'audioinput') {
-
-                // Build audio drop-down list
-                const option = document.createElement('option');
-                option.value = device.deviceId;
-                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
-                audioSelect.appendChild(option);
-
-                if (tmpAudioDeviceId == null) {
-                    //console.log("set default mic");
-                    tmpAudioDeviceId = device.deviceId;
-                }
-
-                if (device.label.indexOf("Document Camera") != -1) {
-                    defaultAudioDeviceId = device.deviceId;
-                }
-            }
-        });
-
-        if (tmpVideoDeviceId == null) {
-            return false;
-        }
-
-        // use same resolution
-        //appFC.reqVideoResolutionList = DevList[0][2];
-
-        if (supportedDevice) {
-            tmpVideoDeviceId = defaultVideoDeviceId;
-        }
-
-        //await fcUpdateVideoResolution();
-        videoSelect.value = tmpVideoDeviceId;
-        choseVideoSource = tmpVideoDeviceId;
-
-        if (defaultAudioDeviceId) {
-            //console.log("select Document Camera Mic");
-            audioSelect.value = defaultAudioDeviceId;
-        }
-        else {
-            audioSelect.value = tmpAudioDeviceId;
-        }
-
-        return true;
-    } catch (error) {
-        console.error("無法列出影片裝置:", error);
-        connectError();
-        return false;
-    }
-}
-
-async function updateVideoDevices() {
-    const hasPermissions = await checkMediaPermissions();
-
-    if (hasPermissions) {
-        const hasVideoDevice = await checkVideoDevices();
-        if (hasVideoDevice) {
-            await startVideo();
-            return;
-        }
-    }
-
-    setRecordBottonImg(false);
-}
-
 async function checkVideoSource() {
     const videoSelect = document.getElementById(appFC.idVideoinputSelect);
 
-    if (currVideoSource != videoSelect.value) {
-        choseVideoSource = videoSelect.value;
+    if (!CurrentVideoDevice)
+        return;
 
-        //const videoOption = videoSelect.options[videoSelect.selectedIndex];
+    if (CurrentVideoDevice.deviceId != videoSelect.value) {
 
         await stopVideo();
+
+        const videoOption = videoSelect.options[videoSelect.selectedIndex];
+        CurrentVideoDevice = videoOption.device;
+
         await startVideo();
     }
 }
 
-function setRecordBottonImg(enable) {
+function setRecordBottonEnable(enable) {
     if (enable) {
-        $('#btn_record').hover(toolBarOnMouseEnter, toolBarOnMouseLeave);
+        $('#btn_record').hover(toolBarOnMouseEnter, toolBarOnMouseLeave).prop('disabled', false);
         $('#btn_record').css('background-image', "url('css/images/icon/record2.png')");
     } else {
-        $('#btn_record').off('mouseenter mouseleave');
+        $('#btn_record').off('mouseenter mouseleave').prop('disabled', true);
         $('#btn_record').css('background-image', "url('css/images/icon/record3.png')");
     }
 }
 
 let isMouseOverDisabled = false;
 
-
 async function getConstraints() {
-    console.log(navigator.mediaDevices.getSupportedConstraints());
 
-    const videoSelect = document.getElementById(appFC.idVideoinputSelect);
-    const videoOption = videoSelect.options[videoSelect.selectedIndex];
-    const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+    let constraints = null;
 
-    let constraints;
+    if (!CurrentVideoDevice) return null;
 
-    if (videoOption.isDC) {
+    if (checkDC(CurrentVideoDevice)) {
+        videoW = 1920;
+        videoH = 1080;
+
         constraints = {
-            audio: { deviceId: { exact: audioSelect.value } },
+            //audio: { deviceId: { exact: CurrentAudioDevice.deviceId } },
             video: {
-                deviceId: { exact: videoOption.value },
-                width: { exact: 1920 },
-                height: { exact: 1080 }
-                // width: { exact: appFC.reqImgW },
-                // height: { exact: appFC.reqImgH }
+                deviceId: { exact: CurrentVideoDevice.deviceId },
+                width: { exact: videoW },
+                height: { exact: videoH }
             }
         };
 
-        appFC.reqVideoResolutionList = DevList[0][2];
+        appFC.reqVideoResolutionList = [
+            // width  height   def 
+            [videoW, videoH, 1]
+        ];
         await fcUpdateVideoResolution();
     }
     else {
         const stream = await navigator.mediaDevices.getUserMedia({
-            video: { deviceId: { exact: videoOption.value } },// 指定攝影機 ID
-            //aspectRatio: { exact: 4 / 3 },
-            //video: true
+            video: { deviceId: { exact: CurrentVideoDevice.deviceId } },
         });
+
         const videoTrack = stream.getVideoTracks()[0];
         const settings = videoTrack.getSettings();
-        console.log('攝像頭的實際設定:', settings);
-        //const capabilities = videoTrack.getCapabilities();
-        //stream.getTracks().forEach(track => track.stop());
-        //console.log(capabilities);
 
-        let reqWidth;
-        let reqHeight;
+        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
 
-        if (settings.width > settings.height) {
-            reqWidth = settings.width;
-            reqHeight = settings.height;
-        } else {
-            reqWidth = settings.height;
-            reqHeight = settings.width;
-        }
+        videoW = settings.width;;
+        videoH = settings.height;
 
-        console.log("audioSelect.value", audioSelect.value);
         appFC.reqVideoResolutionList = [
             // width  height   def 
-            //[capabilities.width.max, capabilities.height.max, 1]
-            [settings.width, settings.height, 1]
+            [videoW, videoH, 1]
         ];
         await fcUpdateVideoResolution();
 
-        if (audioSelect.value) {
+        if (false) { //(CurrentAudioDevice) {
             constraints = {
-                audio: { deviceId: { exact: audioSelect.value } },
+                audio: {
+                    deviceId: { exact: CurrentAudioDevice.deviceId }
+                },
                 video: {
-                    deviceId: { exact: videoOption.value },
-                    //aspectRatio: { exact: 4 / 3 },
-                    width: { exact: reqWidth },
-                    height: { exact: reqHeight }
+                    deviceId: { exact: CurrentVideoDevice.deviceId },
                 }
             }
         } else {
             constraints = {
-                //audio: { deviceId: { exact: audioSelect.value } },
                 video: {
-                    deviceId: { exact: videoOption.value },
-                    //aspectRatio: { exact: 4 / 3 },
-                    width: { exact: reqWidth },
-                    height: { exact: reqHeight }
+                    deviceId: { exact: CurrentVideoDevice.deviceId },
                 }
             }
         }
     };
 
-    console.log(constraints);
     return constraints;
 }
 
-async function fcChangeBaseImageSizeEx(w, h) {
-    console.log("fcChangeBaseImageSizeEx", w, h);
+let flReqTrackEnded = false;
 
-    const mc = appFC.curMode;
+function handleTrackEnded() {
+    stopVideo();
+    cleanDisplayCanvas();
+    flReqTrackEnded = true;
+}
 
-    //if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.before, w, h);
+//navigator.mediaDevices.addEventListener('devicechange', handleDeviceChange);
+const debouncedDeviceChangeHandler = debounce(handleDeviceChange, 500);
+navigator.mediaDevices.addEventListener('devicechange', debouncedDeviceChangeHandler);
 
-    // appFC.imgW = w;
-    // appFC.imgH = h;
-    //alert("screen : " + screen.width + ", " + screen.height + ", " + screen.orientation.angle + ", " + w + ", " + h);
+async function handleDeviceChange() {
 
-    // if (screen.width < screen.height) {
-    //     if (window.matchMedia("(orientation: portrait)").matches) {
-    //         直的
-    //         if (h < w) {
-    //             alert("SWAP I " + appFC.reqImgW + "," + appFC.reqImgH);
-    //             let tmp = w;
-    //             w = h;
-    //             h = tmp;
+    console.log("ondevicechange", new Date());
+
+    // if (window.stream && window.stream.getVideoTracks()[0]) { //(IsDeviceConnected) {
+    //     console.log("window.stream.getVideoTracks()[0].readyState", window.stream.getVideoTracks()[0].readyState);
+
+    //     if (window.stream.getVideoTracks()[0].readyState === 'ended') {
+
+    //         setRecordBottonImg(false);
+
+    //         if (IsRecording) {
+    //             await StopRecord();
     //         }
-    //     }
-    //     else {
-    //         橫的
-    //         if (h > w) {
-    //             alert("SWAP II " + appFC.reqImgW + "," + appFC.reqImgH);
-    //             let tmp = w;
-    //             w = h;
-    //             h = tmp;
-    //         }
+
+    //         await stopVideo();
+    //         cleanDisplayCanvas();
+
+    //         //PreviousDevices = PreviousDevices.filter(item => item.deviceId !== CurrentVideoDevice.deviceId);
+    //         //await delay(500);
     //     }
     // }
 
-    previewModeCfg.imgW = w;
-    previewModeCfg.imgH = h;
+    let CurrentDevices = await makeDeviceList();
 
-    resetCanvasGroupSize(mc, w, h);
+    const missing = PreviousDevices.filter(item =>
+        !CurrentDevices.some(current => current.deviceId === item.deviceId)
+    );
+    const extra = CurrentDevices.filter(item =>
+        !PreviousDevices.some(current => current.deviceId === item.deviceId)
+    );
 
-    if (gl) gl.viewport(0, 0, w, h);
+    if (missing.length > 0) console.log("miss", missing);
+    if (extra.length > 0) console.log("extra", extra);
 
-    fcClearDrawingCanvas();
-    fcResetCanvasArray(mc);
+    const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+    const audioSelect = document.getElementById(appFC.idAudioinputSelect);
 
-    appFC.imgW = w;
-    appFC.imgH = h;
-    adjImageDisplayArea();
+    // Video
+    let reqChangeVideoDevice = false;
+    const plugVideo = extra.filter(dev => dev.kind == 'videoinput');
+    const unplugVideo = missing.filter(dev => dev.kind == 'videoinput');
+
+    if (plugVideo.length > 0) console.log("plugVideo", plugVideo);
+    if (unplugVideo.length > 0) console.log("unplugVideo", unplugVideo);
+
+    if (plugVideo.length > 0) {
+
+        if (CurrentVideoDevice == null) {
+            // 原本無 video device
+            CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+            //CurrentVideoDevice = plugVideo[0];
+            reqChangeVideoDevice = true;
+
+            // } else if (checkDC(plugVideo[0])) {
+            //     // 原本存在 video device，插入 DC
+            //     console.log("Plug DC");
+            //     videoSelect.value = plugVideo[0].deviceId;
+            //     CurrentVideoDevice = plugVideo[0];
+            //     reqChangeVideoDevice = true;
+        } else {
+            // 原本存在 video device，插入非 DC
+            // do nothing
+        }
+    }
+
+    if (unplugVideo.length > 0) {
+        // unplug current video device
+        if (unplugVideo.some(dev => dev.deviceId == CurrentVideoDevice.deviceId)) {
+
+            console.log("unplug current video device");
+
+            CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+
+            if (CurrentVideoDevice) {
+                videoSelect.value = CurrentVideoDevice.deviceId;
+                reqChangeVideoDevice = true;
+            } else {
+                videoSelect.value = null;
+            }
+        } else {
+            // un-plug others
+        }
+    }
+    // if (window.stream && window.stream.getVideoTracks()[0]) { //(IsDeviceConnected) {
+    //     console.log("window.stream.getVideoTracks()[0].readyState", window.stream.getVideoTracks()[0].readyState);
+
+    //     if (window.stream.getVideoTracks()[0].readyState === 'ended') {
+
+    //         setRecordBottonEnable(false);
+
+    //         if (IsRecording) {
+    //             await StopRecord();
+    //         }
+
+    //         await stopVideo();
+    //         cleanDisplayCanvas();
+
+    //         if (CurrentVideoDevice)
+    //             CurrentDevices = CurrentDevices.filter(device => device.deviceId != CurrentVideoDevice.deviceId);
+
+    //         CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+    //         if (CurrentVideoDevice) {
+    //             videoSelect.value = CurrentVideoDevice.deviceId;
+    //             reqChangeVideoDevice = true;
+    //         } else {
+    //             videoSelect.value = null;
+    //         }
+    //         //PreviousDevices = PreviousDevices.filter(item => item.deviceId !== CurrentVideoDevice.deviceId);
+    //         //await delay(500);
+    //     }
+    // }
+    if (flReqTrackEnded) {
+        console.log("flReqTrackEnded");
+        flReqTrackEnded = false;
+
+        setRecordBottonEnable(false);
+
+        if (IsRecording) {
+            await StopRecord();
+        }
+
+        await stopVideo();
+        cleanDisplayCanvas();
+
+        // remove current device from list
+        if (CurrentVideoDevice)
+            CurrentDevices = CurrentDevices.filter(device => device.deviceId != CurrentVideoDevice.deviceId);
+
+        CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+        if (CurrentVideoDevice) {
+            videoSelect.value = CurrentVideoDevice.deviceId;
+            reqChangeVideoDevice = true;
+        } else {
+            videoSelect.value = null;
+        }
+    }
+
+    // Audio
+    const plugAudio = extra.filter(dev => dev.kind == 'audioinput');
+    const unplugAudio = missing.filter(dev => dev.kind == 'audioinput');
+    if (plugAudio.length > 0) console.log("plugAudio", plugAudio);
+    if (unplugAudio.length > 0) console.log("unplugAudio", unplugAudio);
+
+    if (plugAudio.length > 0) {
+        if (CurrentAudioDevice == null) {
+            audioSelect.value = plugAudio[0].deviceId;
+            CurrentAudioDevice = plugAudio[0];
+        } else if (checkDC(plugAudio[0])) {
+            audioSelect.value = plugAudio[0].deviceId;
+            CurrentAudioDevice = plugAudio[0];
+        }
+    }
+
+    if (unplugAudio.length > 0) {
+        CurrentAudioDevice = await selectAudioDefaultDevice(CurrentDevices);
+
+        if (CurrentAudioDevice) {
+            audioSelect.value = CurrentAudioDevice.deviceId;
+        } else {
+            audioSelect.value = null;
+        }
+    }
+
+    // Change Video Device (source)
+    if (reqChangeVideoDevice && CurrentVideoDevice) {
+        IsDeviceConnected = false;
+        //await stopVideo();
+        await startVideo();
+    }
+
+    PreviousDevices = CurrentDevices;
+}
+
+function checkDC(device) {
+    if (!device || !device.label) {
+        console.warn("Invalid device object or label is missing");
+        return false;
+    }
+    return device.label.includes("Document Camera");
+}
+
+async function fcChangeBaseImageSizeEx(vW, vH) {
+
+    if (fullPhotoMode) {
+        dispW = winW;
+        dispH = winH;
+        dispX = 0;
+        dispY = 0;
+    }
+    else {
+        dispW = winW - appBaseCfg.iconW * 2;
+        dispH = winH - titleH - appBaseCfg.drawSetH;
+        dispX = appBaseCfg.iconW;
+        dispY = titleH;
+    }
+
+    console.log("fcChangeBaseImageSizeEx Disp", dispX, dispY, dispW, dispH);
+
+    cssCommonSizeObj.left = dispX;
+    cssCommonSizeObj.top = dispY;
+    cssCommonSizeObj.width = dispW;
+    cssCommonSizeObj.height = dispH;
+
+    const id$ = $('#displayCanvas');
+    id$.css(cssCommonSizeObj);
+    id$.attr('width', dispW);
+    id$.attr('height', dispH);
+
+    videoW = vW;
+    videoH = vH;
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    appFC.imgW = dispW;
+    appFC.imgH = dispH;
+
+    calculateCropVertices(videoW, videoH, dispW, dispH);
+    if (gl) gl.viewport(0, 0, dispW, dispH);
+
+    const mc = appFC.curMode;
+    // resetCanvasGroupSize(mc, dispW, dispH);
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    drawingBoardModeCfg.imgW = dispW;
+    drawingBoardModeCfg.imgH = dispH;
+
+    resetCanvasGroupSize(previewModeCfg, dispW, dispH);
+    resetCanvasGroupSize(drawingBoardModeCfg, dispW, dispH);
+
+    const canvas = document.getElementById("drawingArea-baseImageCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawingBoardModeCfg.imageProcess();
+
+    //fcClearDrawingCanvas();
+
+    //fcClearCanvas(previewModeCfg.drawCanvas);
+    //fcClearCanvas(drawingBoardModeCfg.drawCanvas);
+
+    //fcResetCanvasArray(previewModeCfg);
+    //fcResetCanvasArray(drawingBoardModeCfg);
+
     fcUpdateSysInfoWin();
     fcUpdateSysInfoData();
-
-    //if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.after, w, h);
-
-    fcResetZoomRatio(); // 20230429
+    fcResetZoomRatio();
     fcUpdatePanWin();
     fcUpdateCropWin();
 }
 
 async function startVideo() {
-    //console.log("requestVideo", choseVideoSource);
-
     const constraints = await getConstraints();
 
-    console.log("constraints", constraints);
-    //if (choseVideoSource == null) return;
+    if (!constraints) {
+        return;
+    } else {
+        console.log("Start Video constraints", constraints);
+    }
 
 
     try {
-        // await navigator.mediaDevices.getUserMedia({ deviceId: { exact: choseVideoSource }, video: true, audio: true });
-        await testDeviceAvailability(constraints.video.deviceId.exact);
-
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        window.stream = stream;
-
-        //delay(2000);
-
-        const w = constraints.video.width.exact;
-        const h = constraints.video.height.exact;
-
-        fcChangeBaseImageSizeEx(w, h);
-        // const videoSelect = document.getElementById(appFC.idVideoinputSelect);
-        // const videoOption = videoSelect.options[videoSelect.selectedIndex];
-        // const track = stream.getVideoTracks()[0];
-        // const settings = track.getSettings();
-        // console.log('攝像頭的實際設定:', settings);
-
-        // if (!videoOption.isDC) {
-        //     appFC.reqVideoResolutionList = [
-        //         // width  height   def 
-        //         [settings.width, settings.height, 1]
-        //         //[capabilities.width.max / 2, capabilities.height.max / 2, 1]
-        //     ];
-        //     await fcUpdateVideoResolution();
-        // }
-
-        currVideoSource = choseVideoSource;
-
-        console.log("start Video", window.stream);
+        window.stream = await navigator.mediaDevices.getUserMedia(constraints);
+        console.log("start Video stream", window.stream);
         if (!window.stream)
             return;
 
-        if (window.stream.getAudioTracks().length > 0) {
-            window.stream.getAudioTracks()[0].enabled = false;
-        }
-
-        // const videoTrack = window.stream.getVideoTracks()[0];
-        // const capabilities = videoTrack.getCapabilities();
-        // console.log(videoTrack);
-
-        videoElement.srcObject = window.stream;
-        videoElement.onloadeddata = () => {
-            initWebGL(); // Start WebGL once video is loaded
-            gl.viewport(0, 0, w, h);
-            //gl.viewport(0, 0, appFC.reqImgW, appFC.reqImgH);
+        const videoTrack = window.stream.getVideoTracks()[0];
+        videoTrack.onended = () => {
+            console.log("Video track has ended.", new Date());
+            handleTrackEnded(); // 你的處理邏輯
         };
 
-        //updateSize();
+
+        videoElement.srcObject = window.stream;
+
+        makeDeviceList();
 
         videoElement.setAttribute('playsinline', '');
         videoElement.setAttribute('webkit-playsinline', '');
+        videoElement.onloadeddata = () => {
+            initWebGL(); // Start WebGL once video is loaded
+            fcChangeBaseImageSizeEx(videoElement.videoWidth, videoElement.videoHeight);
+            //gl.viewport(0, 0, dispW, dispH);
+        };
 
         await videoElement.load();
 
@@ -13581,17 +13736,14 @@ async function startVideo() {
 
         if (playPromise !== undefined) {
             await playPromise.then(_ => {
-
                 videoElement.muted = true;
                 videoElement.hidden = true;
                 IsDeviceConnected = true;
+                setRecordBottonEnable(true);
             })
         }
-
-
-        setRecordBottonImg(true);
     } catch (error) {
-        console.error("無法顯示影像流:", error);
+        console.log("無法顯示影像流:", error);
         connectError();
     }
 }
@@ -13599,92 +13751,101 @@ async function startVideo() {
 async function stopVideo() {
     //console.log("stopVideo");
     if (window.stream) {
-        window.stream.getTracks().forEach(track => track.stop());
-        console.log("stopVideo", window.stream);
-    }
-    IsDeviceConnected = false;
-    setRecordBottonImg(false);
-}
 
-let previousDevices = [];
-
-async function handleDeviceChange() {
-
-    if (IsDeviceConnected) {
-        console.log("window.stream.getVideoTracks()[0].readyState", window.stream.getVideoTracks()[0].readyState);
-
-        if (window.stream.getVideoTracks()[0].readyState === 'ended') {
-            await stopVideo();
-            cleanDisplayCanvas();
-            await delay(500);
-        }
-    }
-
-    navigator.mediaDevices.enumerateDevices().then(async devices => {
-        const deviceIds = devices.map(device => device.deviceId);
-        //console.log("previousDevices", previousDevices);
-        //console.log("CurrDeviceIDs", deviceIds);
-        if (JSON.stringify(deviceIds) !== JSON.stringify(previousDevices)) {
-            console.log('裝置真正變更:');
-
-            // if (!deviceIds.includes(choseVideoSource)) {
-            //     console.log("Unplug Active Device");
-            //     await stopVideo();
-            // }
-
-            await stopVideo();
-
-            await updateVideoDevices();
-            previousDevices = deviceIds; // 更新裝置列表
-        } else {
-            console.log('裝置變更事件，但裝置列表未變更');
-        }
-    });
-}
-
-const debouncedDeviceChangeHandler = debounce(handleDeviceChange, 100);
-
-navigator.mediaDevices.addEventListener('devicechange', debouncedDeviceChangeHandler);
-
-
-// async function handleDeviceChange() {
-//     console.log("偵測到裝置變更，重新列出影片裝置...");
-//     await updateVideoDevices();
-//     await startVideo();
-// }
-
-function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
-
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function testDeviceAvailability(deviceId) {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            video: { deviceId: { exact: deviceId } }
+        window.stream.getTracks().forEach(function (track) {
+            track.stop();
+            window.stream.removeTrack(track);
         });
 
-        //console.log('設備可用:', deviceId);
-        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
+        console.log("stopVideo", window.stream);
+        setTimeout(() => {
+            console.log("Stream active after stopping all tracks:", window.stream.active);
+            if (window.stream.active == false)
+                window.stream = null;
+        }, 100); // 短延遲檢查
+        videoElement.srcObject = null;
 
-        return true;
-    } catch (error) {
-        //console.error('設備不可用:', deviceId, error.message);
-        return false;
     }
+    IsDeviceConnected = false;
+    setRecordBottonEnable(false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// update stream frame 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+let lastTime = -1;
+let canvasGL;
+let contextVideoOrg;
+
+async function updateVideoStreamFrame() {
+    if (!videoElement) {
+        videoElement = document.getElementById('videoSrc');
+    }
+
+    if (!canvasGL) {
+        canvasGL = document.getElementById('previewArea-WebGL');
+    }
+
+    if (!contextVideoOrg) {
+        let canvasVideoOrg = document.getElementById('previewArea-videoOrg');
+        contextVideoOrg = canvasVideoOrg.getContext('2d');
+    }
+
+    if (IsDeviceConnected) {
+        contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
+
+        // WebGL Render
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, videoElement);
+        gl.useProgram(program);
+
+        // Set attributes
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionVertices), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(positionLocation);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texCoordVertices), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(texCoordLocation);
+
+        // Set brightness uniform
+        const brightnessValue = parseFloat(document.getElementById('configDlg-brightness-slider').value);
+        gl.uniform1f(brightnessLocation, brightnessValue);
+        const whiteBalanceValue = parseFloat(document.getElementById('configDlg-whiteBalence-slider').value);
+        gl.uniform3f(whiteBalanceLocation, whiteBalanceValue, 1.0, 2.0 - whiteBalanceValue);
+
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        var time = videoElement.currentTime;
+
+        if (time && (time !== lastTime)) {
+            //console.log('time: ' + time);
+            lastTime = time;
+            videoLastUpdateTime = new Date();
+            previewVideoStreamUpdate(canvasGL);
+            //previewVideoStreamUpdate(videoElement);
+        }
+
+        const track = window.stream.getVideoTracks()[0];
+        const settings = track.getSettings();
+        //console.log(settings.width, settings.height);
+
+        if (videoW != settings.width) {
+            console.log("updateVideoStreamFrame => fcChangeBaseImageSizeEx", videoW, settings.width);
+            fcChangeBaseImageSizeEx(settings.width, settings.height);
+        }
+    }
+
+    requestAnimationFrame(updateVideoStreamFrame);
 }
 
 function connectError() {
-    setRecordBottonImg(false);
+    setRecordBottonEnable(false);
     cleanDisplayCanvas();
-    //await delay(500);
 }
 
 function cleanDisplayCanvas() {
@@ -13695,7 +13856,7 @@ function cleanDisplayCanvas() {
 }
 
 $(document.body).on('mouseup', (event) => {
-    console.log('Body click');
+    //console.log('Body click');
 
     // 判斷點擊的是否是未被處理的元素
     // if (!event.isDefaultPrevented()) {
@@ -13713,110 +13874,334 @@ $(document.body).on('mouseup', (event) => {
         }
     }
 });
+//const video = document.getElementById('webcam');
+var gl;
+var texture;
+var vertexShader;
+var fragmentShader;
+var program;
+var positionLocation;
+var texCoordLocation;
+var brightnessLocation;
+var whiteBalanceLocation;
+var cropLocation;
+var positionBuffer;
+var texCoordBuffer;
 
-// 更新影片裝置
-async function updateVideoDevices_back() {
+// Initialize WebGL
+function initWebGL() {
+	let canvas = document.getElementById('previewArea-WebGL');
+	//var canvas = document.getElementById('displayCanvas');
+	gl = canvas.getContext('webgl');
+
+	//console.log("initWebGL", canvas, gl);
+
+	if (!gl) {
+		//alert('WebGL not supported');
+		throw new Error('WebGL not supported');
+	}
+
+	const vertexShaderSource = `
+      attribute vec4 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      void main() {
+        gl_Position = a_position;
+        v_texCoord = a_texCoord;
+      }
+    `;
+
+	const fragmentShaderSource = `
+      precision mediump float;
+      uniform sampler2D u_image;
+      uniform float u_brightness;
+      uniform vec3 u_whiteBalance;
+      varying vec2 v_texCoord;
+      
+      void main() {
+        vec4 color = texture2D(u_image, v_texCoord);
+
+        color.rgb *= u_brightness; // Apply brightness adjustment
+        color.r *= u_whiteBalance.r;
+        color.g *= u_whiteBalance.g;
+        color.b *= u_whiteBalance.b;
+        gl_FragColor = color;
+      }
+    `;
+
+	vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+	fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+	program = createProgram(gl, vertexShader, fragmentShader);
+
+	// Get locations
+	positionLocation = gl.getAttribLocation(program, 'a_position');
+	texCoordLocation = gl.getAttribLocation(program, 'a_texCoord');
+	brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
+	whiteBalanceLocation = gl.getUniformLocation(program, 'u_whiteBalance');
+
+	// Set up position buffer
+	positionBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+	// gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+	// 	-1, -1, 1, -1, -1, 1,
+	// 	-1, 1, 1, -1, 1, 1,
+	// ]), gl.STATIC_DRAW);
+
+	// Set up texture coordinate buffer
+	texCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+	// gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+	// 	// 0, 1,  // 左下角 -> 原本是 (0, 0)
+	// 	// 1, 1,  // 右下角 -> 原本是 (1, 0)
+	// 	// 0, 0,  // 左上角 -> 原本是 (0, 1)
+	// 	// 0, 0,  // 左上角 -> 原本是 (0, 1)
+	// 	// 1, 1,  // 右下角 -> 原本是 (1, 0)
+	// 	// 1, 0   // 右上角 -> 原本是 (1, 1)
+	// 	0, 0,
+	// 	1, 0,
+	// 	0, 1,
+	// 	0, 1,
+	// 	1, 0,
+	// 	1, 1,
+	// ]), gl.STATIC_DRAW);
+
+	// Create texture
+	texture = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, texture);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+	//requestAnimationFrame(render);
+}
+
+// Helper functions
+function createShader(gl, type, source) {
+	const shader = gl.createShader(type);
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		console.error(gl.getShaderInfoLog(shader));
+		gl.deleteShader(shader);
+		return null;
+	}
+	return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+	const program = gl.createProgram();
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		console.error(gl.getProgramInfoLog(program));
+		gl.deleteProgram(program);
+		return null;
+	}
+	return program;
+}
+
+let positionVertices = [];
+let texCoordVertices = [];
+
+function calculateCropVertices(inputWidth, inputHeight, outputWidth, outputHeight) {
+	//console.log("calculateCropVertices");
+	const inputAspectRatio = inputWidth / inputHeight;
+	const outputAspectRatio = outputWidth / outputHeight;
+
+	if (outputAspectRatio > inputAspectRatio) {
+		// 裁切上下
+		const heightRatio = inputAspectRatio / outputAspectRatio;
+		const cropTop = (1 - heightRatio) / 2;
+		const cropBottom = 1 - cropTop;
+
+		positionVertices = [
+			-1, -1, // 左下角
+			1, -1, // 右下角
+			-1, 1, // 左上角
+			-1, 1, // 左上角
+			1, -1, // 右下角
+			1, 1, // 右上角
+		];
+
+		texCoordVertices = [
+			0, cropBottom, // 左下角
+			1, cropBottom, // 右下角
+			0, cropTop,    // 左上角
+			0, cropTop,    // 左上角
+			1, cropBottom, // 右下角
+			1, cropTop,    // 右上角
+		];
+	} else {
+		// 裁切左右
+		const widthRatio = outputAspectRatio / inputAspectRatio;
+		const cropLeft = (1 - widthRatio) / 2;
+		const cropRight = 1 - cropLeft;
+
+		positionVertices = [
+			-1, -1, // 左下角
+			1, -1, // 右下角
+			-1, 1, // 左上角
+			-1, 1, // 左上角
+			1, -1, // 右下角
+			1, 1, // 右上角
+		];
+
+		texCoordVertices = [
+			cropLeft, 1, // 左下角
+			cropRight, 1, // 右下角
+			cropLeft, 0,  // 左上角
+			cropLeft, 0,  // 左上角
+			cropRight, 1, // 右下角
+			cropRight, 0, // 右上角
+		];
+	}
+}async function showVideoSource() {
+    $('#displayCanvas').hide();
+    $('#previewArea-WebGL').hide();
+    $('#videoSrc').show();
+}
+
+async function showWebGL() {
+    $('#displayCanvas').hide();
+    $('#videoSrc').hide();
+    $('#previewArea-WebGL').show();
+}
+
+function downloadBlob(blob, filename) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+}
+
+function adjImageDisplayAreaEx() {
+    let id$;
+    let totalW, totalH;
+    let x, y, w, h;
+
+    if (fullPhotoMode) {
+        w = totalW = winW;
+        h = totalH = winH;
+        x = 0;
+        y = 0;
+    }
+    else {
+        w = totalW = winW - appBaseCfg.iconW * 2;
+        h = totalH = winH - titleH - appBaseCfg.drawSetH;
+        x = appBaseCfg.iconW;
+        y = titleH;
+    }
+
+    cssCommonSizeObj.left = x;
+    cssCommonSizeObj.top = y;
+    cssCommonSizeObj.width = w;
+    cssCommonSizeObj.height = h;
+
+    id$ = $('#displayCanvas');
+    id$.css(cssCommonSizeObj);
+    id$.attr('width', w);
+    id$.attr('height', h);
+
+    dispX = x;
+    dispY = y;
+    dispW = w;
+    dispH = h;
+
+    calculateCropVertices(videoW, videoH, w, h);
+    if (gl) gl.viewport(0, 0, dispW, dispH);
+    //console.log("adjImageDisplayArea Disp", dispX, dispY, dispW, dispH);
+
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    drawingBoardModeCfg.imgW = dispW;
+    drawingBoardModeCfg.imgH = dispH;
+
+    resetCanvasGroupSize(previewModeCfg, dispW, dispH);
+    resetCanvasGroupSize(drawingBoardModeCfg, dispW, dispH);
+    const canvas = document.getElementById("drawingArea-baseImageCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (drawingBoardModeCfg.imageProcessContext)
+        drawingBoardModeCfg.imageProcess();
+}
+
+async function LogDeviceList() {
+    const CurrentDevices = await makeDeviceList();
+    console.log(CurrentDevices);
+}
+
+async function checkMediaDevice() {
+    const stream = await navigator.mediaDevices.getUserMedia({
+        video: { deviceId: { exact: deviceId } }
+    });
+};
+
+async function testDeviceAvailability(deviceId) {
     try {
-        console.log("updateVideoDevice");
-        const videoSelect = document.getElementById(appFC.idVideoinputSelect);
-        const audioSelect = document.getElementById(appFC.idAudioinputSelect);
-
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
-        audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
-
-        var tmpDeviceId = null;
-        var defaultVideoDeviceId = null;
-        var defaultAudioDeviceId = null;
-
-        console.log(devices);
-        supportedDevice = false;
-
-        devices.forEach(device => {
-            if (device.kind === 'videoinput') {
-                var getVendorID = parseInt("0x" + device.label.split(":")[0].split("(")[1], 16);
-                var getProductID = parseInt("0x" + device.label.split(")")[0].split(":")[1], 16);
-
-                const option = document.createElement('option');
-                option.value = device.deviceId;
-                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
-                videoSelect.appendChild(option);
-
-                // console.log("VID_PID =", getVendorID.toString(16), " _ ", getProductID.toString(16));
-
-                if (tmpDeviceId == null) {
-                    console.log("set default camera");
-                    tmpDeviceId = device.deviceId;
-                }
-
-                if (device.label.indexOf('Document Camera') > -1) {
-                    console.log("find DC");
-                    appFC.reqVideoResolutionList = DevList[0][2];
-                    //fcUpdateVideoResolution();
-                    supportedDevice = true;
-                    tmpDeviceId = device.deviceId;
-                    defaultVideoDeviceId = device.deviceId;
-                }
-
-                // if (true === isSupportedDevice(getVendorID, getProductID)) {
-                //     console.log("find DC with VID_PID");
-                //     fcUpdateVideoResolution();
-                //     supportedDevice = true;
-                //     tmpDeviceId = device.deviceId;
-                // } else if (device.label == 'Document Camera') {
-                //     console.log("find DC");
-                //     appFC.reqVideoResolutionList = DevList[0][2];
-                //     fcUpdateVideoResolution();
-                //     supportedDevice = true;
-                //     tmpDeviceId = device.deviceId;
-                // }
-            }
-
-            if (device.kind === 'audioinput') {
-                const option = document.createElement('option');
-                option.value = device.deviceId;
-                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
-                audioSelect.appendChild(option);
-
-                if (device.label.indexOf("Document Camera") != -1) {
-                    defaultAudioDeviceId = device.deviceId;
-                }
-            }
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { deviceId: { exact: deviceId } }
         });
 
-        // use same resolution
-        //appFC.reqVideoResolutionList = DevList[0][2];
+        console.log('設備可用:', deviceId);
+        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
 
-        if (!supportedDevice) {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: true
-            });
-            const videoTrack = stream.getVideoTracks()[0];
-            const capabilities = videoTrack.getCapabilities();
-            appFC.reqVideoResolutionList = [
-                // width  height   def 
-                [capabilities.width.max / 2, capabilities.height.max / 2, 1]
-            ];
-
-            // MaxWidth = capabilities.width.max / 2;
-            // MaxHeight = capabilities.height.max / 2;
-            MaxWidth = capabilities.width.max;
-            MaxHeight = capabilities.height.max;
-        }
-
-        await fcUpdateVideoResolution();
-        videoSelect.value = tmpDeviceId;
-        choseVideoSource = tmpDeviceId;
-
-        if (defaultAudioDeviceId) {
-            console.log("select Document Camera Mic");
-            audioSelect.value = defaultAudioDeviceId;
-        }
+        return true;
     } catch (error) {
-        console.error("無法列出影片裝置:", error);
-        $('#btn_record').css('background-image', "url('css/images/icon/record3.png')");
+        console.error('設備不可用:', deviceId, error.message);
+        return false;
     }
 }
+
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+// window.addEventListener("orientationchange", async () => {
+//     // alert("orientationchange");
+//     // await updateVideoDevices();
+//     // await stopVideo();
+//     // await startVideo();
+
+//     //appFC.checkVideoResolution = true;
+//     //previewCheckReqVideoResolution();
+// });
+
+
+// if (screen.width < screen.height) {
+// 	if (window.matchMedia("(orientation: portrait)").matches) {
+// 		// 直的
+// 		if (h < w) {
+// 			alert("SWAP I " + appFC.reqImgW + "," + appFC.reqImgH);
+// 			let tmp = w;
+// 			w = h;
+// 			h = tmp;
+// 		}
+// 	}
+// 	else {
+// 		// 橫的
+// 		if (h > w) {
+// 			alert("SWAP II " + appFC.reqImgW + "," + appFC.reqImgH);
+// 			let tmp = w;
+// 			w = h;
+// 			h = tmp;
+// 		}
+// 	}
+// }
 
 async function testVideoResolution() {
     const w = 1920;
@@ -13851,170 +14236,4 @@ async function testVideoResolution() {
     fcUpdatePanWin();
     fcUpdateCropWin();
 
-}//const video = document.getElementById('webcam');
-var gl;
-var texture;
-var vertexShader;
-var fragmentShader;
-var program;
-var positionLocation;
-var texCoordLocation;
-var brightnessLocation;
-var whiteBalanceLocation;
-var positionBuffer;
-var texCoordBuffer;
-
-// Initialize WebGL
-function initWebGL() {
-  let canvas = document.getElementById('previewArea-WebGL');
-  //var canvas = document.getElementById('displayCanvas');
-  gl = canvas.getContext('webgl');
-
-  //console.log("initWebGL", canvas, gl);
-
-  if (!gl) {
-    //alert('WebGL not supported');
-    throw new Error('WebGL not supported');
-  }
-
-
-  const vertexShaderSource = `
-    attribute vec4 a_position;
-    attribute vec2 a_texCoord;
-    varying vec2 v_texCoord;
-    void main() {
-      gl_Position = a_position;
-      v_texCoord = a_texCoord;
-    }
-  `;
-
-  const fragmentShaderSource = `
-    precision mediump float;
-    uniform sampler2D u_image;
-    uniform float u_brightness;
-    uniform vec3 u_whiteBalance;
-    varying vec2 v_texCoord;
-    void main() {
-      vec4 color = texture2D(u_image, v_texCoord);
-      color.rgb *= u_brightness; // Apply brightness adjustment
-      color.r *= u_whiteBalance.r;
-      color.g *= u_whiteBalance.g;
-      color.b *= u_whiteBalance.b;
-      gl_FragColor = color;
-    }
-  `;
-
-  vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-  fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
-  program = createProgram(gl, vertexShader, fragmentShader);
-
-  // Get locations
-  positionLocation = gl.getAttribLocation(program, 'a_position');
-  texCoordLocation = gl.getAttribLocation(program, 'a_texCoord');
-  brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
-  whiteBalanceLocation = gl.getUniformLocation(program, 'u_whiteBalance');
-
-  // Set up position buffer
-  positionBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    -1, -1, 1, -1, -1, 1,
-    -1, 1, 1, -1, 1, 1,
-  ]), gl.STATIC_DRAW);
-
-  // Set up texture coordinate buffer
-  texCoordBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    // 0, 1,  // 左下角 -> 原本是 (0, 0)
-    // 1, 1,  // 右下角 -> 原本是 (1, 0)
-    // 0, 0,  // 左上角 -> 原本是 (0, 1)
-    // 0, 0,  // 左上角 -> 原本是 (0, 1)
-    // 1, 1,  // 右下角 -> 原本是 (1, 0)
-    // 1, 0   // 右上角 -> 原本是 (1, 1)
-    0, 0, 1, 0, 0, 1,
-    0, 1, 1, 0, 1, 1,
-  ]), gl.STATIC_DRAW);
-
-  // Create texture
-  texture = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-
-  // Main render loop
-  // function render() {
-  //     gl.bindTexture(gl.TEXTURE_2D, texture);
-  //     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
-
-  //     gl.useProgram(program);
-
-  //     // Set attributes
-  //     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  //     gl.enableVertexAttribArray(positionLocation);
-  //     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-
-  //     gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-  //     gl.enableVertexAttribArray(texCoordLocation);
-  //     gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
-
-  //     // Set brightness uniform
-  //     //gl.uniform1f(brightnessLocation, 1.2); // Example: Slightly increase brightness
-  //     gl.uniform1f(brightnessLocation, parseFloat(document.getElementById('brightnessSlider').value));
-  //     const whiteBalanceValue = parseFloat(document.getElementById('whiteBalanceSlider').value);
-  //     gl.uniform3f(whiteBalanceLocation, whiteBalanceValue, 1.0, 2.0 - whiteBalanceValue);
-
-  //     gl.clear(gl.COLOR_BUFFER_BIT);
-  //     gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-  //     requestAnimationFrame(render);
-  // }
-
-  //requestAnimationFrame(render);
 }
-
-// Helper functions
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(gl.getShaderInfoLog(shader));
-    gl.deleteShader(shader);
-    return null;
-  }
-  return shader;
-}
-
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.error(gl.getProgramInfoLog(program));
-    gl.deleteProgram(program);
-    return null;
-  }
-  return program;
-}
-
-// Get webcam stream
-// navigator.mediaDevices.getUserMedia({ video: true })
-//     .then(stream => {
-//         video.srcObject = stream;
-//         video.play();
-//         video.onloadeddata = () => {
-//             initWebGL(); // Start WebGL once video is loaded
-//         };
-//     })
-//     .catch(err => {
-//         console.error('Error accessing webcam:', err);
-//     });
-
-// //const canvas = document.getElementById("tempCanvasGL");
-// const canvas = document.getElementById("displayCanvas");
-// //const canvas = document.getElementById("previewArea-baseImageCanvas");
-// document.getElementById('configDlg-brightness-slider').addEventListener('input', () => updateTexture(canvas));
-// document.getElementById('configDlg-whiteBalence-slider').addEventListener('input', () => updateTexture(canvas));
