@@ -2883,7 +2883,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0125</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0202</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13161,19 +13161,19 @@ async function makeDeviceList() {
         videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
         audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
 
-        console.log("make Device List Step 1");
+        //console.log("make Device List Step 1");
 
         let devices = await navigator.mediaDevices.enumerateDevices();
         devices = devices.filter(
             device => device.deviceId.length > 20
         );
 
-        console.log("make Device List Step 2");
+        //console.log("make Device List Step 2");
 
         devices
             .filter(device =>
                 device.kind === "videoinput" &&
-                !device.label.includes("visual") &&
+                !device.label.includes("Virtual") &&
                 !device.label.includes("Basler") &&
                 !device.deviceId.includes("communications"))
             .forEach(device => {
@@ -13187,11 +13187,12 @@ async function makeDeviceList() {
                 //}
             });
 
-        console.log("make Device List Step 3");
+        //console.log("make Device List Step 3");
 
         devices
             .filter(device =>
                 device.kind === "audioinput" &&
+                !device.label.includes("Virtual") &&
                 !device.deviceId.includes("default") &&
                 !device.deviceId.includes("communications"))
             .forEach(device => {
@@ -13203,7 +13204,7 @@ async function makeDeviceList() {
                 audioSelect.appendChild(option);
             });
 
-        console.log("make Device List Step 4");
+        //console.log("make Device List Step 4");
 
         if (CurrentVideoDevice)
             videoSelect.value = CurrentVideoDevice.deviceId;
@@ -13480,13 +13481,37 @@ function handleTrackEnded() {
     flReqTrackEnded = true;
 }
 
+let debounceTimer = null;
+let isEnumerating = false;
+let reqEnumerating = false;
+
 //navigator.mediaDevices.addEventListener('devicechange', handleDeviceChange);
-const debouncedDeviceChangeHandler = debounce(handleDeviceChange, 500);
-navigator.mediaDevices.addEventListener('devicechange', debouncedDeviceChangeHandler);
+// const debouncedDeviceChangeHandler = debounce(handleDeviceChange, 1000);
+// navigator.mediaDevices.addEventListener('devicechange', debouncedDeviceChangeHandler);
+
+navigator.mediaDevices.addEventListener('devicechange', () => {
+    console.log(`[${getCurrentTimeWithMs()}] devicechange 事件觸發 (debounce)`);
+    if (debounceTimer) {
+        clearTimeout(debounceTimer);
+    }
+    debounceTimer = setTimeout(() => {
+        reqEnumerating = true;
+        debounceTimer = null;
+        handleDeviceChange();
+    }, 1000);
+});
 
 async function handleDeviceChange() {
+    console.log(`[${getCurrentTimeWithMs()}] handleDeviceChange`);
 
-    console.log("ondevicechange", new Date());
+    if (isEnumerating) {
+        console.log(`[${getCurrentTimeWithMs()}] 目前已有 enumerateDevices 執行中，跳過此次處理`);
+        return;
+    }
+
+    isEnumerating = true;
+    reqEnumerating = false;
+
 
     // if (window.stream && window.stream.getVideoTracks()[0]) { //(IsDeviceConnected) {
     //     console.log("window.stream.getVideoTracks()[0].readyState", window.stream.getVideoTracks()[0].readyState);
@@ -13656,6 +13681,12 @@ async function handleDeviceChange() {
     }
 
     PreviousDevices = CurrentDevices;
+
+    isEnumerating = false;
+
+    if (reqEnumerating) {
+        await handleDeviceChange();
+    }
 }
 
 function checkDC(device) {
@@ -14208,6 +14239,19 @@ function debounce(func, wait) {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function getCurrentTimeWithMs() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
 
 
 // window.addEventListener("orientationchange", async () => {
