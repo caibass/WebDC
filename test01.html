@@ -43,15 +43,56 @@
 
     let sn = 0;
 
-    // 監聽裝置變更事件，當裝置有變動時輸出包含毫秒的當前時間
-    navigator.mediaDevices.addEventListener('devicechange', async () => {
-        //let sn = await getRandomInt(100);
+    // navigator.mediaDevices.addEventListener('devicechange', async () => {
+    //     //let sn = await getRandomInt(100);
+    //     sn += 1;
+    //     let currSn = sn;
+    //     console.log('[' + currSn + ']' + '裝置變更時間:', getCurrentTimeWithMs());
+    //     const devices = await navigator.mediaDevices.enumerateDevices();
+    //     console.log('[' + currSn + ']' + '列表完成時間:', getCurrentTimeWithMs());
+    //     console.log('[' + currSn + ']' + '現有裝置:', devices);
+    // });
+
+    let isEnumerating = false;
+
+    async function handleDeviceChange() {
+      if (isEnumerating) {
+        console.log(`[${getCurrentTimeWithMs()}] 目前已有 enumerateDevices 執行中，跳過此次處理`);
+        return;
+      }
+      isEnumerating = true;
+      try {
         sn += 1;
         let currSn = sn;
-        console.log('[' + currSn + ']' + '裝置變更時間:', getCurrentTimeWithMs());
+        // console.log('[' + currSn + ']' + '裝置變更時間:', getCurrentTimeWithMs());
+        // const devices = await navigator.mediaDevices.enumerateDevices();
+        // console.log('[' + currSn + ']' + '列表完成時間:', getCurrentTimeWithMs());
+
+        const startTime = performance.now();
         const devices = await navigator.mediaDevices.enumerateDevices();
-        console.log('[' + currSn + ']' + '列表完成時間:', getCurrentTimeWithMs());
-        console.log('[' + currSn + ']' + '現有裝置:', devices);
+        const endTime = performance.now();
+        console.log(`[${getCurrentTimeWithMs()}] 初始 enumerateDevices 執行耗時: ${(endTime - startTime).toFixed(2)} 毫秒`);
+
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        console.log(`[${getCurrentTimeWithMs()}] devicechange 處理後的 videoinput 裝置:`, videoDevices);
+      } catch (err) {
+        console.error('devicechange 時取得裝置列表失敗:', err);
+      } finally {
+        isEnumerating = false;
+      }
+    }
+
+    let debounceTimer = null;
+
+    navigator.mediaDevices.addEventListener('devicechange', () => {
+      console.log(`[${getCurrentTimeWithMs()}] devicechange 事件觸發 (debounce)`);
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
+      debounceTimer = setTimeout(() => {
+        handleDeviceChange();
+        debounceTimer = null;
+      }, 1000);
     });
   </script>
 </body>
