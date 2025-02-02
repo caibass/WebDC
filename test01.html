@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Input 與 裝置變更範例 (Async/Await)</title>
+</head>
+<body>
+  <script>
+    // 定義一個 async 函式來初始化取得影片權限及裝置列表
+    async function initMedia() {
+      try {
+        // 取得 video 權限，瀏覽器會跳出提示要求
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream.getTracks().forEach(track => track.stop());
+        // 取得權限後，列出所有裝置
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        // 篩選出 videoinput 裝置
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        console.log('可用的 videoinput 裝置:', videoDevices);
+      } catch (err) {
+        console.error('取得 video 權限或裝置列表時發生錯誤:', err);
+      }
+    }
+    
+    // 呼叫初始化函式
+    initMedia();
+
+    function getCurrentTimeWithMs() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+    }
+
+    async function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    let sn = 0;
+
+    // 監聽裝置變更事件，當裝置有變動時輸出包含毫秒的當前時間
+    navigator.mediaDevices.addEventListener('devicechange', async () => {
+        //let sn = await getRandomInt(100);
+        sn += 1;
+        let currSn = sn;
+        console.log('[' + currSn + ']' + '裝置變更時間:', getCurrentTimeWithMs());
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        console.log('[' + currSn + ']' + '列表完成時間:', getCurrentTimeWithMs());
+        console.log('[' + currSn + ']' + '現有裝置:', devices);
+    });
+  </script>
+</body>
+</html>
