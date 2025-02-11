@@ -250,5 +250,8 @@
    },
    "dlgSave": {
       "message": "저장"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "선과 색"
+   }   
 }

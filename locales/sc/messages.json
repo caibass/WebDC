@@ -250,5 +250,8 @@
    },
    "dlgSave": {
       "message": "保存"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "线条与颜色"
+   }   
 }

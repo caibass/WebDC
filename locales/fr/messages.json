@@ -190,5 +190,8 @@
    },
    "dlgSave": {
       "message": "Enregistrer sous"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "Ligne et Couleur"
+   }  
 }

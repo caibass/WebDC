@@ -250,5 +250,8 @@
    },
    "dlgSave": {
       "message": "Сохранить как"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "Линия и цвет"
+   }   
 }

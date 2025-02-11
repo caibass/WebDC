@@ -250,5 +250,8 @@
    },
    "dlgSave": {
       "message": "存檔"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "線條與顏色"
+   }   
 }

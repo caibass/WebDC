@@ -250,5 +250,8 @@
    },
    "dlgSave": {
       "message": "Save"
-   }
+   },
+   "btnConfigDraw": {
+      "message": "Line & Color"
+   }   
 }
