@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0212.3</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0213.1</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -7320,7 +7320,6 @@ async function previewToolBarOnClick(event) {
 			break;
 
 		case "btn_capture":
-			//LogDeviceList(); break;
 			if (typeof window.stream == "undefined" ||
 				!window.stream.active ||
 				!IsDeviceConnected)
@@ -12780,7 +12779,6 @@ function showAllToolBars(visible) {
 
 var recordStream;
 var recordingFormat;
-var previewStream;
 
 let initialOrientation;  // 紀錄錄影開始時的方向
 let initialVideoW;
@@ -12838,8 +12836,8 @@ async function StartRecord() {
     // record all canvas
     // var mc = previewModeCfg;
     // var canvas = mc['combineCanvas'];
-    let canvas = document.getElementById("previewArea-videoOrg");
-    console.log(canvas);
+    // let canvas = document.getElementById("previewArea-videoOrg");
+    // console.log(canvas);
 
     const audioStream = await navigator.mediaDevices.getUserMedia({
         audio: { deviceId: { exact: CurrentAudioDevice.deviceId } }
@@ -12850,7 +12848,7 @@ async function StartRecord() {
 
     //window.stream.getAudioTracks()[0].enabled = true;
 
-    let canvasStream;
+    let canvasStream = window.stream;
 
     // if (isMobileDevice) {
     //     canvasStream = canvas.captureStream(30);
@@ -12866,12 +12864,8 @@ async function StartRecord() {
     //     } else {
     //         canvasStream = videoElement.captureStream();
     //     }
-
-
     //     //canvasStream = videoElement.captureStream();
-    // }
-
-    canvasStream = window.stream;
+    // }   
 
     console.log(canvasStream);
 
@@ -12885,16 +12879,6 @@ async function StartRecord() {
         console.log("Audio Disable");
         recordStream = new MediaStream(canvasStream.getTracks());
     }
-
-
-    // 使用合併的流進行錄影
-    // const mediaRecorder = new MediaRecorder(combinedStream);
-    // mediaRecorder.ondataavailable = (event) => {
-    //     const blob = new Blob([event.data], { type: 'video/webm' });
-    //     const videoURL = URL.createObjectURL(blob);
-    //     console.log("Recording completed. Video URL:", videoURL);
-    // };
-    // mediaRecorder.start();
 
     recordedChunks = [];
 
@@ -12950,11 +12934,11 @@ async function StartRecord() {
         }
     };
     mediaRecorder.onstop = () => {
-        // const blob = new Blob(recordedChunks, { type: mimeType });
-        // const filename = fcGetFilenameByDateTime(recordingFormat);
-        // downloadBlob(blob, filename);
-
         SaveRecord();
+
+        recordStream.getAudioTracks().forEach(function (track) {
+            track.stop();
+        });
     };
     mediaRecorder.start(1000);
 
@@ -12977,16 +12961,6 @@ async function StopRecord() {
     showAllToolBars(true);
     $("#btn_pause").hide();
     mediaRecorder.stop();
-
-    // recordStream.getTracks().forEach(function (track) {
-    //     track.stop();
-    //     recordStream.removeTrack(track);
-    // });
-
-    // if (window.stream != undefined)
-    // 	window.stream.getAudioTracks()[0].enabled = false;
-
-    //window.stream = previewStream;
 
     var getd = new Date();
     var recordingNow = getd.getTime();
@@ -13862,7 +13836,7 @@ async function startVideo() {
         const videoTrack = window.stream.getVideoTracks()[0];
         videoTrack.onended = () => {
             console.log("Video track has ended.", new Date());
-            handleTrackEnded(); // 你的處理邏輯
+            handleTrackEnded();
         };
 
         const settings = videoTrack.getSettings();
@@ -13880,8 +13854,11 @@ async function startVideo() {
             //gl.viewport(0, 0, dispW, dispH);
         };
         videoElement.addEventListener('pause', () => {
-            console.log('Video paused, attempting to play...');
-            videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+            console.log("videoElement pause!!!");
+            if (document.visibilityState === 'visible' && videoElement.paused) {
+                videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+            }
+            //videoElement.play().catch(err => console.error('Error while trying to play video:', err));
         });
 
         await videoElement.load();
@@ -13955,88 +13932,88 @@ async function updateVideoStreamFrame() {
         // if (frameCnt % ModCnt == 0)
         //     console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight);
 
-        if (IsRecording) {
-            if (isMobileDevice) {
-                if (initialOrientation !== getCurrentRotation() && initialVideoW !== videoW) {
-                    const currentRotation = getCurrentRotation();
-                    let rotationDifference = 0;
+        // if (IsRecording) {
+        //     if (isMobileDevice) {
+        //         if (initialOrientation !== getCurrentRotation() && initialVideoW !== videoW) {
+        //             const currentRotation = getCurrentRotation();
+        //             let rotationDifference = 0;
 
-                    if (facingMode == "user") {
-                        rotationDifference = initialOrientation - currentRotation;
-                    } else {
-                        //environment
-                        rotationDifference = currentRotation - initialOrientation;
-                    }
+        //             if (facingMode == "user") {
+        //                 rotationDifference = initialOrientation - currentRotation;
+        //             } else {
+        //                 //environment
+        //                 rotationDifference = currentRotation - initialOrientation;
+        //             }
 
 
 
-                    // 根據旋轉方向調整 canvas 的寬高
-                    if (Math.abs(rotationDifference) === 90 || Math.abs(rotationDifference) === 270) {
-                        // canvasVideoOrg.width = videoH;
-                        // canvasVideoOrg.height = videoW;
-                        canvasVideoOrg.width = videoElement.videoHeight;
-                        canvasVideoOrg.height = videoElement.videoWidth;
-                    } else {
-                        // canvasVideoOrg.width = videoW;
-                        // canvasVideoOrg.height = videoH;
-                        canvasVideoOrg.width = videoElement.videoWidth;
-                        canvasVideoOrg.height = videoElement.videoHeight;
-                    }
+        //             // 根據旋轉方向調整 canvas 的寬高
+        //             if (Math.abs(rotationDifference) === 90 || Math.abs(rotationDifference) === 270) {
+        //                 // canvasVideoOrg.width = videoH;
+        //                 // canvasVideoOrg.height = videoW;
+        //                 canvasVideoOrg.width = videoElement.videoHeight;
+        //                 canvasVideoOrg.height = videoElement.videoWidth;
+        //             } else {
+        //                 // canvasVideoOrg.width = videoW;
+        //                 // canvasVideoOrg.height = videoH;
+        //                 canvasVideoOrg.width = videoElement.videoWidth;
+        //                 canvasVideoOrg.height = videoElement.videoHeight;
+        //             }
 
-                    // 清除畫布
-                    //contextVideoOrg.clearRect(0, 0, canvasVideoOrg.width, canvasVideoOrg.height);
+        //             // 清除畫布
+        //             //contextVideoOrg.clearRect(0, 0, canvasVideoOrg.width, canvasVideoOrg.height);
 
-                    // 平移到中心點，進行反向旋轉修正
-                    contextVideoOrg.translate(canvasVideoOrg.width / 2, canvasVideoOrg.height / 2);
-                    contextVideoOrg.rotate((-rotationDifference * Math.PI) / 180);
+        //             // 平移到中心點，進行反向旋轉修正
+        //             contextVideoOrg.translate(canvasVideoOrg.width / 2, canvasVideoOrg.height / 2);
+        //             contextVideoOrg.rotate((-rotationDifference * Math.PI) / 180);
 
-                    // 計算正確的縮放比例，讓畫面保持原比例
-                    // const scaleX = canvasVideoOrg.width / videoElement.videoWidth;
-                    // const scaleY = canvasVideoOrg.height / videoElement.videoHeight;
-                    // const scale = Math.max(scaleX, scaleY);  // 確保畫面不會有空白區域
+        //             // 計算正確的縮放比例，讓畫面保持原比例
+        //             // const scaleX = canvasVideoOrg.width / videoElement.videoWidth;
+        //             // const scaleY = canvasVideoOrg.height / videoElement.videoHeight;
+        //             // const scale = Math.max(scaleX, scaleY);  // 確保畫面不會有空白區域
 
-                    // 進行縮放並繪製影像
-                    //contextVideoOrg.scale(scale, scale);
+        //             // 進行縮放並繪製影像
+        //             //contextVideoOrg.scale(scale, scale);
 
-                    // if (Math.abs(rotationDifference) === 90 || Math.abs(rotationDifference) === 270) {
-                    //     contextVideoOrg.drawImage(
-                    //         videoElement,
-                    //         -canvasVideoOrg.height / 2,
-                    //         -canvasVideoOrg.width / 2,
-                    //         canvasVideoOrg.height,
-                    //         canvasVideoOrg.width
-                    //     );
-                    // } else {
-                    //     contextVideoOrg.drawImage(
-                    //         videoElement,
-                    //         -canvasVideoOrg.width / 2,
-                    //         -canvasVideoOrg.height / 2,
-                    //         canvasVideoOrg.width,
-                    //         canvasVideoOrg.height
-                    //     );
-                    // }
-                    contextVideoOrg.drawImage(
-                        videoElement,
-                        //0, 0, videoW, videoH,
-                        // -canvasVideoOrg.width / 2,
-                        // -canvasVideoOrg.height / 2,
-                        // canvasVideoOrg.width,
-                        // canvasVideoOrg.height
-                        - videoElement.videoWidth / 2,
-                        -videoElement.videoHeight / 2,
-                        videoElement.videoWidth,
-                        videoElement.videoHeight
-                    );
+        //             // if (Math.abs(rotationDifference) === 90 || Math.abs(rotationDifference) === 270) {
+        //             //     contextVideoOrg.drawImage(
+        //             //         videoElement,
+        //             //         -canvasVideoOrg.height / 2,
+        //             //         -canvasVideoOrg.width / 2,
+        //             //         canvasVideoOrg.height,
+        //             //         canvasVideoOrg.width
+        //             //     );
+        //             // } else {
+        //             //     contextVideoOrg.drawImage(
+        //             //         videoElement,
+        //             //         -canvasVideoOrg.width / 2,
+        //             //         -canvasVideoOrg.height / 2,
+        //             //         canvasVideoOrg.width,
+        //             //         canvasVideoOrg.height
+        //             //     );
+        //             // }
+        //             contextVideoOrg.drawImage(
+        //                 videoElement,
+        //                 //0, 0, videoW, videoH,
+        //                 // -canvasVideoOrg.width / 2,
+        //                 // -canvasVideoOrg.height / 2,
+        //                 // canvasVideoOrg.width,
+        //                 // canvasVideoOrg.height
+        //                 - videoElement.videoWidth / 2,
+        //                 -videoElement.videoHeight / 2,
+        //                 videoElement.videoWidth,
+        //                 videoElement.videoHeight
+        //             );
 
-                    // 重置變換矩陣
-                    contextVideoOrg.setTransform(1, 0, 0, 1, 0, 0);
-                } else {
-                    contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
-                }
-            } else {
-                contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
-            }
-        }
+        //             // 重置變換矩陣
+        //             contextVideoOrg.setTransform(1, 0, 0, 1, 0, 0);
+        //         } else {
+        //             contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
+        //         }
+        //     } else {
+        //         contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
+        //     }
+        // }
 
         // WebGL Render
         gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -14342,10 +14319,73 @@ function getOrientation() {
     return window.matchMedia("(orientation: landscape)").matches ? 'landscape' : 'portrait';
 }
 
+function attemptToPlay(videoElement) {
+    videoElement.play().then(() => {
+        console.log('✅ Video playing successfully');
+        monitorPlayback(videoElement); // 開始監控
+    }).catch(err => console.error('❌ Error while trying to play video:', err));
+}
+
+function monitorPlayback(videoElement) {
+    const checkInterval = setInterval(() => {
+        if (videoElement.paused) {
+            console.warn('⚠️ Video paused again, replaying...');
+            attemptToPlay(videoElement);
+        } else {
+            console.log('🎥 Video is playing, stopping monitor.');
+            clearInterval(checkInterval);
+        }
+    }, 1000); // 每秒檢查一次
+}
+
+let wakeLock = null;
+
+async function requestWakeLock() {
+    try {
+        if ('wakeLock' in navigator) {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('✅ Wake Lock 已啟動，螢幕將保持開啟');
+
+            // 當 Wake Lock 失效時（例如：裝置休眠後恢復）
+            wakeLock.addEventListener('release', () => {
+                console.log('⚠️ Wake Lock 已被釋放');
+            });
+        } else {
+            console.warn('❌ 瀏覽器不支援 Wake Lock API');
+        }
+    } catch (err) {
+        console.warn('❌ 無法啟用 Wake Lock:', err);
+    }
+}
+
+// 啟動 Wake Lock
+requestWakeLock();
+
+// setInterval(() => {
+//     console.log("visible: ", document.visibilityState);
+//     console.log("focus: ", document.hasFocus());
+//     console.log("paused: ", videoElement.paused);
+
+//     //window.dispatchEvent(new Event('mousemove'));
+// }, 2000);
+
+window.addEventListener('focus', () => {
+    console.log('視窗獲得焦點');
+});
+
 document.addEventListener('visibilitychange', async () => {
+    console.log("visibilitychange : ", document.visibilityState);
+
+    if (document.visibilityState === 'visible') {
+        requestWakeLock();
+    }
+
     if (document.visibilityState === 'visible' && videoElement.paused) {
         console.log('visibilitychange, Video paused, attempting to play...');
         videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+        // setTimeout(() => {
+        //     videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+        // }, 50);
     }
 });
 
@@ -14365,7 +14405,7 @@ function downloadBlob_back(blob, filename) {
     //URL.revokeObjectURL(link.href);
 }
 
-function downloadBlob(blob, filename) {
+async function downloadBlob(blob, filename) {
     // 將 MIME 類型設定為 application/octet-stream
     const octetBlob = new Blob([blob], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(octetBlob);
@@ -14382,8 +14422,9 @@ function downloadBlob(blob, filename) {
     // 延遲釋放 Object URL
     setTimeout(() => {
         URL.revokeObjectURL(url);
-    }, 1000);
+    }, 2000);
 }
+
 
 // function downloadBlob(blob, filename) {
 
