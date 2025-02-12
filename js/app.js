@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0211.1</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0212.1</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -10342,6 +10342,8 @@ async function saveBlobToWebm(suggName, blob) {
 }
 
 async function saveBlobToJpg(suggName, blob) {
+	suggName += ".jpg";
+
 	const options = {
 		suggestedName: suggName,
 		types: [
@@ -10355,7 +10357,6 @@ async function saveBlobToJpg(suggName, blob) {
 	};
 
 	downloadBlob(blob, suggName);
-
 	//saveBlobToFile(blob, options);
 }
 
@@ -10408,7 +10409,7 @@ async function fcSaveCanvasToFile(canvas, DateStr = "", RefleshGallery = false) 
 	if (DateStr == "")
 		DateStr = fcGetFilenameByDateTime('');
 
-	console.log(DateStr);
+	//console.log(DateStr);
 
 	var filenameSub = DateStr + '.sub';
 	var filename = DateStr + '.jpg';
@@ -11108,6 +11109,7 @@ function get_i18n_Message(strId) {
 	// Only English is complete
 	if (LanguageJson[strId] == null ||
 		LanguageJson[strId] === undefined) {
+		console.log(strId);
 		return LanguageJsonDefault[strId]['message'];
 	}
 	else {
@@ -12940,9 +12942,11 @@ async function StartRecord() {
         }
     };
     mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: mimeType });
-        const filename = fcGetFilenameByDateTime(recordingFormat);
-        downloadBlob(blob, filename);
+        // const blob = new Blob(recordedChunks, { type: mimeType });
+        // const filename = fcGetFilenameByDateTime(recordingFormat);
+        // downloadBlob(blob, filename);
+
+        SaveRecord();
     };
     mediaRecorder.start(1000);
 
@@ -13319,6 +13323,7 @@ async function initializeDevices() {
                 audioSelect.value = CurrentAudioDevice.deviceId;
 
             if (CurrentVideoDevice) {
+                await stopVideo();
                 await startVideo();
                 return;
             } else {
@@ -13336,12 +13341,30 @@ async function initializeDevices() {
     }
 }
 
+async function stopAllTracksAndConfirm(stream) {
+    const trackPromises = stream.getTracks().map(async (track) => {
+        track.stop();  // 停止每個 track
+        console.log(`Stopping track: ${track.kind}`);
+        await new Promise(resolve => setTimeout(resolve, 100));  // 確保停頓檢查
+        console.log(`Track ${track.kind} stopped with state: ${track.readyState}`);
+    });
+
+    // 等待所有 tracks 停止完成
+    await Promise.all(trackPromises);
+    return true;
+}
+
 async function checkCameraPermission() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        console.log("Camera permission granted.");
-        stream.getTracks().forEach(track => track.stop());
-        return true;
+        console.log("Camera permission granted.", stream);
+        const result = await stopAllTracksAndConfirm(stream);
+        console.log("ALL STOP");
+        // stream.getTracks().forEach(track => track.stop()).then(() => {
+        //     console.log("ALL STOP");
+        //     return true;
+        // });
+        return result;
     } catch (error) {
         if (error.name === "NotAllowedError") {
             console.warn("Camera permission denied.");
@@ -13848,6 +13871,10 @@ async function startVideo() {
             fcChangeBaseImageSizeEx(videoElement.videoWidth, videoElement.videoHeight);
             //gl.viewport(0, 0, dispW, dispH);
         };
+        videoElement.addEventListener('pause', () => {
+            console.log('Video paused, attempting to play...');
+            videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+        });
 
         await videoElement.load();
 
@@ -14298,6 +14325,13 @@ function getOrientation() {
     return window.matchMedia("(orientation: landscape)").matches ? 'landscape' : 'portrait';
 }
 
+document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible' && videoElement.paused) {
+        console.log('visibilitychange, Video paused, attempting to play...');
+        videoElement.play().catch(err => console.error('Error while trying to play video:', err));
+    }
+});
+
 function downloadBlob_back(blob, filename) {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
@@ -14318,6 +14352,8 @@ function downloadBlob(blob, filename) {
     // 將 MIME 類型設定為 application/octet-stream
     const octetBlob = new Blob([blob], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(octetBlob);
+
+    // console.log("downloadBlob", filename);
 
     const link = document.createElement('a');
     link.href = url;
