@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0212.1</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0212.2</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -14304,6 +14304,14 @@ async function showWebGL() {
 }
 
 function getCurrentRotation() {
+    if ('orientation' in screen) {
+        return screen.orientation.angle || 0;  // 新 API
+    } else if ('orientation' in window) {
+        return window.orientation || 0;  // 舊 API（iOS Safari）
+    } else {
+        return 0;  // 兩者都不支援
+    }
+
     return screen.orientation.angle || 0;  // 默認為 0 度
 }
 
