@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0213.1</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0213.2</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -3795,21 +3795,23 @@ function creatZoomDlg() {
 	$(eleId).hide()
 
 	// close icon
-	eleId = zoomDlg + '-close';
-	createSpanElement(zoomDlg, eleId);
+	if (false) {
+		eleId = zoomDlg + '-close';
+		createSpanElement(zoomDlg, eleId);
 
-	eleId = '#' + eleId;
-	var bkg = fcGetDefIconPath("close.png");
+		eleId = '#' + eleId;
+		var bkg = fcGetDefIconPath("close.png");
 
-	$(eleId).css('background', bkg);
-	$(eleId).css('top', 0 + 'px');
-	$(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
-	$(eleId).css('width', appCfg.toolBarIconW + 'px');
-	$(eleId).css('height', appCfg.toolBarIconH + 'px');
-	$(eleId).css('position', 'absolute');
-	$(eleId).on('click', function () {
-		$("#" + zoomDlg).hide()
-	});
+		$(eleId).css('background', bkg);
+		$(eleId).css('top', 0 + 'px');
+		$(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
+		$(eleId).css('width', appCfg.toolBarIconW + 'px');
+		$(eleId).css('height', appCfg.toolBarIconH + 'px');
+		$(eleId).css('position', 'absolute');
+		$(eleId).on('click', function () {
+			$("#" + zoomDlg).hide()
+		});
+	}
 
 	// zoom
 	eleId = zoomDlg + '-zoom';
@@ -4435,22 +4437,23 @@ function initAboutDlg() {
 	$(eleId).css('opacity', appCfg.aboutOpacity);
 
 	// set close icon
+	if (false) {
+		eleId = '#' + closeId;
 
-	eleId = '#' + closeId;
+		bkg = fcGetDefIconPath('close.png');
 
-	bkg = fcGetDefIconPath('close.png');
+		$(eleId).css('background', bkg);
+		$(eleId).css('top', '0' + 'px');
+		$(eleId).css('left', 'calc(100% - ' + appCfg.aboutIconW + 'px)');
+		$(eleId).css('width', appCfg.aboutIconW + 'px');
+		$(eleId).css('height', appCfg.aboutIconH + 'px');
+		$(eleId).css('position', 'absolute');
 
-	$(eleId).css('background', bkg);
-	$(eleId).css('top', '0' + 'px');
-	$(eleId).css('left', 'calc(100% - ' + appCfg.aboutIconW + 'px)');
-	$(eleId).css('width', appCfg.aboutIconW + 'px');
-	$(eleId).css('height', appCfg.aboutIconH + 'px');
-	$(eleId).css('position', 'absolute');
-
-	$(eleId).click(function () {
-		showElement('aboutDlg', false);
-		//fcCloseActiveDlg();
-	});
+		$(eleId).click(function () {
+			showElement('aboutDlg', false);
+			//fcCloseActiveDlg();
+		});
+	}
 
 	// set content area
 
@@ -13910,7 +13913,7 @@ let canvasGL;
 let canvasVideoOrg = null;
 let contextVideoOrg;
 
-let ModCnt = 30;
+let ModCnt = 100;
 let frameCnt = 0;
 
 async function updateVideoStreamFrame() {
@@ -13929,8 +13932,9 @@ async function updateVideoStreamFrame() {
 
     if (IsDeviceConnected) {
         // frameCnt += 1;
-        // if (frameCnt % ModCnt == 0)
-        //     console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight);
+        // if (frameCnt % ModCnt == 0) {
+        //     console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight, getCurrentRotation());
+        // }
 
         // if (IsRecording) {
         //     if (isMobileDevice) {
