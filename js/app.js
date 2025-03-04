@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.3</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.4</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13234,7 +13234,7 @@ async function selectVideoDefaultDevice(devices) {
 
     for (let i = 0; i < videoDevices.length; i++) {
         if (checkDC(videoDevices[i])) {
-            return videoDevices[i];
+
             if (await testDeviceAvailability_DC(videoDevices[i].deviceId)) {
                 return videoDevices[i];
             }
@@ -13836,6 +13836,7 @@ async function startVideo() {
 
 
     try {
+        delay(500);
         window.stream = await navigator.mediaDevices.getUserMedia(constraints);
         console.log("start Video stream", window.stream);
         if (!window.stream)
@@ -14560,7 +14561,7 @@ async function testDeviceAvailability_DC(deviceId) {
 
         console.log('設備可用:', deviceId);
         stream.getTracks().forEach(track => track.stop()); // 停止媒體流
-
+        delay(200);
         return true;
     } catch (error) {
         console.error('設備不可用:', deviceId, error.message);
