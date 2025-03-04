@@ -13492,8 +13492,10 @@ async function getConstraints() {
     if (!CurrentVideoDevice) return null;
 
     if (checkDC(CurrentVideoDevice)) {
-        videoW = 1920;
-        videoH = 1080;
+        videoW = 640;
+        videoH = 480;
+        // videoW = 1920;
+        // videoH = 1080;
 
         constraints = {
             //audio: { deviceId: { exact: CurrentAudioDevice.deviceId } },
@@ -13931,10 +13933,11 @@ async function updateVideoStreamFrame() {
     }
 
     if (IsDeviceConnected) {
-        // frameCnt += 1;
-        // if (frameCnt % ModCnt == 0) {
-        //     console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight, getCurrentRotation());
-        // }
+        frameCnt += 1;
+        if (frameCnt % ModCnt == 0) {
+            console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight);
+            //console.log(videoW, videoH, videoElement.videoWidth, videoElement.videoHeight, getCurrentRotation());
+        }
 
         // if (IsRecording) {
         //     if (isMobileDevice) {
