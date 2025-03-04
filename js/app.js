@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.4</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.5</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13344,9 +13344,14 @@ async function checkCameraPermission() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
-            width: { ideal: 1920 },
-            height: { ideal: 1080 }
+            width: { ideal: 640 },
+            height: { ideal: 480 }
         });
+        // const stream = await navigator.mediaDevices.getUserMedia({
+        //     video: true,
+        //     width: { ideal: 1920 },
+        //     height: { ideal: 1080 }
+        // });
         console.log("Camera permission granted.", stream);
         const result = await stopAllTracksAndConfirm(stream);
         console.log("ALL STOP");
@@ -13497,8 +13502,10 @@ async function getConstraints() {
     if (!CurrentVideoDevice) return null;
 
     if (checkDC(CurrentVideoDevice)) {
-        videoW = 1920;
-        videoH = 1080;
+        videoW = 640;
+        videoH = 480;
+        // videoW = 1920;
+        // videoH = 1080;
 
         constraints = {
             //audio: { deviceId: { exact: CurrentAudioDevice.deviceId } },
@@ -13836,7 +13843,7 @@ async function startVideo() {
 
 
     try {
-        delay(500);
+        await delay(500);
         window.stream = await navigator.mediaDevices.getUserMedia(constraints);
         console.log("start Video stream", window.stream);
         if (!window.stream)
@@ -14577,7 +14584,7 @@ function debounce(func, wait) {
     };
 }
 
-function delay(ms) {
+async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
