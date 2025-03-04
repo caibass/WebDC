@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.5</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.6</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13344,8 +13344,8 @@ async function checkCameraPermission() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
-            width: { ideal: 640 },
-            height: { ideal: 480 }
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
         });
         // const stream = await navigator.mediaDevices.getUserMedia({
         //     video: true,
@@ -13502,8 +13502,8 @@ async function getConstraints() {
     if (!CurrentVideoDevice) return null;
 
     if (checkDC(CurrentVideoDevice)) {
-        videoW = 640;
-        videoH = 480;
+        videoW = 1280;
+        videoH = 720;
         // videoW = 1920;
         // videoH = 1080;
 
