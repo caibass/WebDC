@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.1</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.2</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13341,7 +13341,11 @@ async function stopAllTracksAndConfirm(stream) {
 
 async function checkCameraPermission() {
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            width: { ideal: 1920 },
+            height: { ideal: 1080 }
+        });
         console.log("Camera permission granted.", stream);
         const result = await stopAllTracksAndConfirm(stream);
         console.log("ALL STOP");
