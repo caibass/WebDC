@@ -2904,7 +2904,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0213.2</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0304.1</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13234,7 +13234,7 @@ async function selectVideoDefaultDevice(devices) {
 
     for (let i = 0; i < videoDevices.length; i++) {
         if (checkDC(videoDevices[i])) {
-            if (await testDeviceAvailability(videoDevices[i].deviceId)) {
+            if (await testDeviceAvailability_DC(videoDevices[i].deviceId)) {
                 return videoDevices[i];
             }
         }
@@ -13492,10 +13492,8 @@ async function getConstraints() {
     if (!CurrentVideoDevice) return null;
 
     if (checkDC(CurrentVideoDevice)) {
-        videoW = 640;
-        videoH = 480;
-        // videoW = 1920;
-        // videoH = 1080;
+        videoW = 1920;
+        videoH = 1080;
 
         constraints = {
             //audio: { deviceId: { exact: CurrentAudioDevice.deviceId } },
@@ -14533,6 +14531,26 @@ async function testDeviceAvailability(deviceId) {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: { deviceId: { exact: deviceId } }
+        });
+
+        console.log('設備可用:', deviceId);
+        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
+
+        return true;
+    } catch (error) {
+        console.error('設備不可用:', deviceId, error.message);
+        return false;
+    }
+}
+
+async function testDeviceAvailability_DC(deviceId) {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                deviceId: { exact: deviceId },
+                width: { exact: 1920 },
+                height: { exact: 1080 }
+            }
         });
 
         console.log('設備可用:', deviceId);
