@@ -70,29 +70,11 @@ html, body{
   
   .slider {
     -webkit-appearance: none;
-  -moz-appearance: none;
     overflow: hidden;
     width: 200;
     height: 20px;
     background: none;
     outline: none;
-  }
-
-
-.slider::-moz-range-track {
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-  }
-
-  .slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #FAFAFA;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: .2s;
-    /* 在 Firefox 中無需 margin-top 調整 */
   }
   
   .slider::-webkit-slider-thumb {
@@ -127,28 +109,11 @@ html, body{
 
   .slider_min {
     -webkit-appearance: none;
-    -moz-appearance: none;
     overflow: hidden;
     width: 200;
     height: 20px;
     background: none;
     outline: none;
-  }
-
-  .slider_min::-moz-range-track {
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-  }
-
-  .slider_min::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #FAFAFA;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: .2s;
-    /* 在 Firefox 中無需 margin-top 調整 */
   }
   
   .slider_min::-webkit-slider-thumb {
@@ -174,19 +139,5 @@ html, body{
     height:10px;
   }
 
-.scrollable {
-    overflow-y: auto; /* 垂直滾動條 */
-    overflow-x: auto; /* 垂直滾動條 */
-    max-height: 100vh; /* 最大高度設為視窗高度 */
-    max-width: 100vw; /* 最大高度設為視窗高度 */
-    scrollbar-color: transparent transparent; /* 隱藏滾動條的顏色 */
-    scrollbar-width: none; /* 適用於 Firefox */
-    -ms-overflow-style: none; /* 適用於 IE 和 Edge */
-}
 
-.scrollable::-webkit-scrollbar {
-        width: 0; /* 隱藏滾動條寬度 */
-        height: 0; /* 隱藏橫向滾動條 */
-        display: none; /* 適用於 Chrome 和 Safari */
-}
 
